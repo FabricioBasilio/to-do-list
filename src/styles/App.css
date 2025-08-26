@@ -1,0 +1,31 @@
+/* global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* estilos */
+
+body {
+    background-image: url("./src/assets/images/background-image.jpg");
+    /* background-position: center; */
+}
+
+/* card da todo list */
+
+.app {
+    max-width: 85%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 15px 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    margin-bottom: 20px;
+}
