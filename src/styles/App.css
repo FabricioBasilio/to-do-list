@@ -39,6 +39,28 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    margin-bottom: 20px;
+}
+
+.search, .filter {
+    border-bottom: solid 1px var(--cor5);
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+}
+
+.filter_options {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.filter_options__alphabetic__buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+
 .todo_list {
     margin-bottom: 35px;
     border-bottom: solid 1px var(--cor5);
@@ -81,6 +103,7 @@ button {
     opacity: 0.7;
     transition: opacity 0.2s linear;
     font-size: 0.9rem;
+    font-weight: 700;
 }
 
 button:hover {
