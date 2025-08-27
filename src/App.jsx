@@ -67,8 +67,8 @@ function completeTodo(id) {
   return (
     <div className="app">
       <h1>Lista de Tarefas</h1>
-      <Search search={search} setSearch={setSearch}/>
       <Filter filter={filter} setFilter={setFilter} setSort={setSort}/>
+      <Search search={search} setSearch={setSearch}/>
       <section className="todo_list">
         {todos
         .filter(todo => filter === "All" ? true : filter === "Done" ? todo.isDone : !todo.isDone)
