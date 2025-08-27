@@ -1,12 +1,17 @@
 import { useState } from 'react'
 import './styles/App.css'
+import Todo from './components/Todo'
+import TodoForm from './components/TodoForm'
+import Search from './components/Search'
+import Filter from './components/Filter'
+
 
 function App() {
 
   const [todos, setTodos] = useState([
     {
       id: 1,
-      text: "Fazer projeto todo list",
+      text: "Fazer projeto todo list", 
       category: "Trabalho",
       isDone: false
     },
@@ -17,30 +22,61 @@ function App() {
       isDone: false
     },
     {
-      id: 1,
+      id: 3,
       text: "Ir à academia",
       category: "Pessoal",
       isDone: false
     },
   ])
 
+  const [search, setSearch] = useState("")
+  const [filter, setFilter] = useState("All")
+  const [sort, setSort] = useState("Asc")
+
+
+function addTodo(text, category) {
+  const newTodos = [
+    ...todos,
+    {
+      id: Math.floor(Math.random() * 10000),
+      text,
+      category,
+      isDone: false
+    }
+  ]
+
+  setTodos(newTodos)
+}
+
+function removeTodo(id) {
+  const newTodos = [...todos]
+  const filteredTodos = newTodos.filter(todo => todo.id !== id ? todo : null)
+
+  setTodos(filteredTodos)
+}
+
+function completeTodo(id) {
+  const newTodos = [...todos]
+  newTodos.map(todo => todo.id === id ? todo.isDone = !todo.isDone : todo)
+
+  setTodos(newTodos)
+}
+
+
+
   return (
     <div className="app">
       <h1>Lista de Tarefas</h1>
+      <Search search={search} setSearch={setSearch}/>
+      <Filter filter={filter} setFilter={setFilter} setSort={setSort}/>
       <section className="todo_list">
-        {todos.map(({text, category}) => (
-          <section className='todo_list__todo'>
-            <div className='todo_list__todo__content'>
-              <p>{text}</p>
-              <p className='content__category'> - ({category})</p>
-            </div>
-            <div>
-              <button>Completar</button>
-              <button>Remover</button>
-            </div>
-          </section>
+        {todos
+        .filter(todo => filter === "All" ? true : filter === "Done" ? todo.isDone : !todo.isDone)
+        .filter(todo => todo.text.toLowerCase().includes(search.toLowerCase())).sort((a, b) => sort === "Asc" ? a.text.localeCompare(b.text) : b.text.localeCompare(a.text)).map(todo => (
+          <Todo key={todo.id} todo={ todo } completeTodo={ completeTodo } removeTodo={ removeTodo }/>
         ))}
       </section>
+      <TodoForm addTodo={addTodo}/>
     </div>
   )
 }
