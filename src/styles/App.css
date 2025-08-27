@@ -10,6 +10,10 @@
 :root {
     --cor1: #333974;
     --cor2: #ffffff;
+    --cor3: #5cb85c;
+    --cor4: #db0808;
+
+    --radiusPadrao: 0.5rem;
 }
 
 /* estilos */
@@ -24,8 +28,9 @@ body {
 .app {
     max-width: 85%;
     margin: 0 auto;
-    background-color: #ffffff;
+    background-color: var(--cor2);
     padding: 15px 20px;
+    border-radius: var(--radiusPadrao);
 }
 
 h1 {
@@ -41,12 +46,36 @@ button {
     color: var(--cor2);
     padding: 5px 10px;
     border: none;
-    border-radius: 3px;
+    border-radius: var(--radiusPadrao);
     cursor: pointer;
     opacity: 0.7;
-    transition: opacity 0.3s;
+    transition: opacity 0.2s linear;
 }
 
 button:hover {
     opacity: 1;
+}
+
+.buttons__complete_button {
+    background-color: var(--cor3);
+}
+
+.buttons__remove_button {
+    background-color: var(--cor4);
+}
+
+
+
+/* formulario */
+.todo_form {
+    margin-bottom: 1.5rem;
+}
+
+input, select {
+    border-radius: var(--radiusPadrao);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--radiusPadrao);
+    display: block;
+    width: 100%;
 }

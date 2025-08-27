@@ -8,8 +8,8 @@ function Todo({ todo }) {
         <p className="content__category"> - ({todo.category})</p>
       </div>
       <div>
-        <button>Completar</button>
-        <button>Remover</button>
+        <button className="buttons__complete_button">Completar</button>
+        <button className="buttons__remove_button">Remover</button>
       </div>
     </section>
   );
