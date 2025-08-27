@@ -12,6 +12,8 @@
     --cor2: #ffffff;
     --cor3: #5cb85c;
     --cor4: #db0808;
+    --cor5: #555555;
+    --cor6: #0000001a;
 
     --radiusPadrao: 0.5rem;
 }
@@ -26,7 +28,7 @@ body {
 /* card da todo list */
 
 .app {
-    max-width: 85%;
+    width: 90%;
     margin: 0 auto;
     background-color: var(--cor2);
     padding: 15px 20px;
@@ -37,7 +39,35 @@ h1 {
     text-align: center;
 }
 
+.todo_list {
+    margin-bottom: 35px;
+    border-bottom: solid 1px var(--cor5);
+}
+
+.todo_list__todo {
+    box-shadow: 0 0 10px var(--cor6);
+    background-color: var(--cor1);
+    margin-bottom: 20px;
+    padding: 0.9rem;
+    border-radius: var(--radiusPadrao);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.todo_list__todo--done {
+    text-decoration: line-through;
+    font-style: italic;
+}
+
+.todo_list__todo__buttons {
+    align-self: center;
+    display: flex;
+    gap: 20px;
+}
+
 p {
+    font-size: 1.1rem;
     margin-bottom: 20px;
 }
 
@@ -50,6 +80,7 @@ button {
     cursor: pointer;
     opacity: 0.7;
     transition: opacity 0.2s linear;
+    font-size: 0.9rem;
 }
 
 button:hover {
