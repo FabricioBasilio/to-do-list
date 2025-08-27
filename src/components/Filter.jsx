@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Filter({ filter, setFilter }) {
+function Filter({ filter, setFilter, setSort }) {
   return (
     <section className="filter">
         <h2>Filtrar</h2>
@@ -16,8 +16,8 @@ function Filter({ filter, setFilter }) {
             <div>
                 <p>Ordem alfabética: </p>
                 <div className="filter_options__alphabetic__buttons">
-                    <button>Asc</button>
-                    <button>Desc</button>
+                    <button onClick={() => setSort("Asc")}>Asc</button>
+                    <button onClick={() => setSort("Desc")}>Desc</button>
                 </div>
             </div>
         </div>
