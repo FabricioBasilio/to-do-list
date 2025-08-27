@@ -1,84 +1,112 @@
-import { useState } from 'react'
-import './styles/App.css'
-import Todo from './components/Todo'
-import TodoForm from './components/TodoForm'
-import Search from './components/Search'
-import Filter from './components/Filter'
-
+import { useState } from "react";
+import "./styles/App.css";
+import Todo from "./components/Todo";
+import TodoForm from "./components/TodoForm";
+import Search from "./components/Search";
+import Filter from "./components/Filter";
 
 function App() {
-
   const [todos, setTodos] = useState([
     {
       id: 1,
-      text: "Fazer projeto todo list", 
+      text: "Fazer projeto todo list",
       category: "Trabalho",
-      isDone: false
+      isDone: false,
     },
     {
       id: 2,
       text: "Fazer projeto com React",
       category: "Trabalho",
-      isDone: false
+      isDone: false,
     },
     {
       id: 3,
       text: "Ir à academia",
       category: "Pessoal",
-      isDone: false
+      isDone: false,
     },
-  ])
+  ]);
 
-  const [search, setSearch] = useState("")
-  const [filter, setFilter] = useState("All")
-  const [sort, setSort] = useState("Asc")
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("All");
+  const [sort, setSort] = useState("Asc");
 
+  function addTodo(text, category) {
+    const newTodos = [
+      ...todos,
+      {
+        id: Math.floor(Math.random() * 10000),
+        text,
+        category,
+        isDone: false,
+      },
+    ];
 
-function addTodo(text, category) {
-  const newTodos = [
-    ...todos,
-    {
-      id: Math.floor(Math.random() * 10000),
-      text,
-      category,
-      isDone: false
-    }
-  ]
+    setTodos(newTodos);
+  }
 
-  setTodos(newTodos)
-}
+  function removeTodo(id) {
+    const newTodos = [...todos];
+    const filteredTodos = newTodos.filter((todo) =>
+      todo.id !== id ? todo : null
+    );
 
-function removeTodo(id) {
-  const newTodos = [...todos]
-  const filteredTodos = newTodos.filter(todo => todo.id !== id ? todo : null)
+    setTodos(filteredTodos);
+  }
 
-  setTodos(filteredTodos)
-}
+  function completeTodo(id) {
+    const newTodos = [...todos];
+    newTodos.map((todo) =>
+      todo.id === id ? (todo.isDone = !todo.isDone) : todo
+    );
 
-function completeTodo(id) {
-  const newTodos = [...todos]
-  newTodos.map(todo => todo.id === id ? todo.isDone = !todo.isDone : todo)
+    setTodos(newTodos);
+  }
 
-  setTodos(newTodos)
-}
+  function filtrarTarefas(todo) {
+    return filter === "All"
+      ? true
+      : filter === "Done"
+      ? todo.isDone
+      : !todo.isDone;
+  }
 
+  function pesquisarTarefas(todo) {
+    return todo.text.toLowerCase().includes(search.toLowerCase());
+  }
 
+  function ordenarAlfabeticamente(a, b) {
+    return sort === "Asc"
+      ? a.text.localeCompare(b.text)
+      : b.text.localeCompare(a.text);
+  }
+
+  function colocarTarefas(todo) {
+    return (
+      <Todo
+        key={todo.id}
+        todo={todo}
+        completeTodo={completeTodo}
+        removeTodo={removeTodo}
+      />
+    );
+  }
 
   return (
     <div className="app">
       <h1>Lista de Tarefas</h1>
-      <Filter filter={filter} setFilter={setFilter} setSort={setSort}/>
-      <Search search={search} setSearch={setSearch}/>
+      <Filter filter={filter} setFilter={setFilter} setSort={setSort} />
+      <Search search={search} setSearch={setSearch} />
       <section className="todo_list">
         {todos
-        .filter(todo => filter === "All" ? true : filter === "Done" ? todo.isDone : !todo.isDone)
-        .filter(todo => todo.text.toLowerCase().includes(search.toLowerCase())).sort((a, b) => sort === "Asc" ? a.text.localeCompare(b.text) : b.text.localeCompare(a.text)).map(todo => (
-          <Todo key={todo.id} todo={ todo } completeTodo={ completeTodo } removeTodo={ removeTodo }/>
-        ))}
+          .filter(filtrarTarefas)
+          .filter(pesquisarTarefas)
+          .sort(ordenarAlfabeticamente)
+          .map(colocarTarefas)}
       </section>
-      <TodoForm addTodo={addTodo}/>
+      <TodoForm addTodo={addTodo} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
