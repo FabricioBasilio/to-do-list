@@ -8,7 +8,7 @@ function Todo({ todo, completeTodo, removeTodo }) {
         <p className="content__category">#{todo.category}</p>
       </div>
       <section className="todo_list__todo__buttons">
-        <button className="buttons__complete_button" onClick={() => completeTodo(todo.id)}>Completar</button>
+        <button className="buttons__complete_button" onClick={() => completeTodo(todo.id)}>{todo.isDone ? "Desmarcar" : "Completar"}</button>
         <button className="buttons__remove_button" onClick={() => removeTodo(todo.id)}>Remover</button>
       </section>
     </section>

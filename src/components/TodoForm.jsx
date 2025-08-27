@@ -23,7 +23,7 @@ function TodoForm({ addTodo }) {
       <section className="todo_form">
         <h2>Adicionar tarefa: </h2>
         <form className="todo_form__form" onSubmit={handleFormSubmit}>
-            <input type="text" placeholder="Digite o título..." value={value} onChange={e => setValue(e.target.value)}/>
+            <input type="text" placeholder="Digite a tarefa..." value={value} onChange={e => setValue(e.target.value)}/>
             <select value={category} onChange={e => setCategory(e.target.value)}>
                 <option value="">Selecione uma categoria</option>
                 <option value="Trabalho">Trabalho</option>

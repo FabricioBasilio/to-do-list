@@ -43,6 +43,32 @@ h2 {
   margin-bottom: 20px;
 }
 
+p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: var(--cor1);
+  color: var(--cor2);
+  padding: 5px 10px;
+  border: none;
+  border-radius: var(--radiusPadrao);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s linear;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+button:hover {
+  opacity: 1;
+}
+
+select {
+    background-color: var(--cor2);
+}
+
 .search,
 .filter {
   border-bottom: solid 1px var(--cor5);
@@ -69,7 +95,7 @@ h2 {
 .todo_list__todo {
   box-shadow: 0 0 10px var(--cor6);
   background-color: var(--cor2);
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   padding: 0.9rem;
   border-radius: var(--radiusPadrao);
   display: flex;
@@ -79,10 +105,10 @@ h2 {
 
 .todo_list__todo p {
   line-height: 1.5rem;
-  word-spacing: 0.1rem;
+  letter-spacing: 0.05rem;
 }
 
-.todo_list__todo--done p {
+.todo_list__todo--done p:first-child {
   text-decoration: line-through;
   font-style: italic;
 }
@@ -93,30 +119,8 @@ h2 {
   gap: 20px;
 }
 
-p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-}
-
-button {
-  background-color: var(--cor1);
-  color: var(--cor2);
-  padding: 5px 10px;
-  border: none;
-  border-radius: var(--radiusPadrao);
-  cursor: pointer;
-  opacity: 0.7;
-  transition: opacity 0.2s linear;
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-button:hover {
-  opacity: 1;
-}
-
-select {
-    background-color: var(--cor2);
+.todo_list__todo__buttons button {
+    width: 100px;
 }
 
 .buttons__complete_button {
