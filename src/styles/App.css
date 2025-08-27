@@ -106,7 +106,7 @@ input, select {
     border-radius: var(--radiusPadrao);
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid var(--radiusPadrao);
+    border: 1px solid var(--cor5);
     display: block;
     width: 100%;
 }
