@@ -26,6 +26,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
 }
 
 /* card da todo list */
@@ -92,6 +93,23 @@ select {
   padding-bottom: 25px;
   margin-bottom: 25px;
 }
+
+.search__container {
+  display: flex;
+}
+
+.search__container__input {
+  flex: 80%;
+  border-radius: var(--radiusPadrao) 0 0 var(--radiusPadrao);
+  margin-bottom: 0;
+
+}
+
+.search__container button {
+  flex: 20%;
+  border-radius: 0 var(--radiusPadrao) var(--radiusPadrao) 0;
+}
+
 
 .filter_options {
   display: flex;
