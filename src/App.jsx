@@ -4,6 +4,8 @@ import Todo from "./components/Todo";
 import TodoForm from "./components/TodoForm";
 import Search from "./components/Search";
 import Filter from "./components/Filter";
+import Fade from "./components/Fade";
+import ModalForm from "./components/ModalForm";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -30,6 +32,8 @@ function App() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState("Asc");
+  const [fade, setFade] = useState(false);
+  const [modal, setModalForm] = useState(false);
 
   function addTodo(text, category) {
     const newTodos = [
@@ -92,6 +96,17 @@ function App() {
     );
   }
 
+  function mostrarModal() {
+    if (fade && modal) {
+      return (
+        <>
+          <Fade />
+          <ModalForm setFade={setFade} setModalForm={setModalForm} />
+        </>
+      );
+    } else return <></>;
+  }
+
   function checarTarefas() {
     // Quando há 0 tarefas
     return todos.length === 0 ? (
@@ -118,7 +133,8 @@ function App() {
       />
       <Search search={search} setSearch={setSearch} />
       <section className="todo_list">{checarTarefas()}</section>
-      <TodoForm addTodo={addTodo} />
+      <TodoForm addTodo={addTodo} setFade={setFade} setModalForm={setModalForm} />
+      {mostrarModal()}
     </div>
   );
 }

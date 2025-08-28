@@ -15,6 +15,7 @@
   --cor6: #0000001a;
   --cor7: #e9ebe8e8;
 
+  --corFade: #00000080;
   --radiusPadrao: 0.5rem;
 }
 
@@ -25,7 +26,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-
 }
 
 /* card da todo list */
@@ -69,6 +69,16 @@ button {
 
 button:hover {
   opacity: 1;
+}
+
+input,
+select {
+  border-radius: var(--radiusPadrao);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--cor5);
+  display: block;
+  width: 100%;
 }
 
 select {
@@ -124,7 +134,7 @@ select {
   transition: box-shadow 0.1s linear;
 }
 
-.todo_list__todo:hover  {
+.todo_list__todo:hover {
   box-shadow: inset 0 0 5px var(--cor5);
 }
 
@@ -178,12 +188,39 @@ select {
   padding: 0.3rem 1.5rem;
 }
 
-input,
-select {
-  border-radius: var(--radiusPadrao);
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid var(--cor5);
-  display: block;
+.fade {
   width: 100%;
+  height: 100%;
+  background-color: var(--corFade);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.modal_details {
+  z-index: 3;
+  background-color: var(--cor7);
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 700px;
+  border-radius: var(--radiusPadrao);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_details form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal_details form p {
+  text-align: center;
+  line-height: 1.5rem;
+  letter-spacing: 0.05rem;
 }

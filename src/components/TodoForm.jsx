@@ -1,12 +1,22 @@
 import { useState } from "react";
 
-function TodoForm({ addTodo }) {
+function TodoForm({ addTodo, setFade, setModalForm }) {
   const [value, setValue] = useState("");
   const [category, setCategory] = useState("");
 
+  
   function handleFormSubmit(e) {
     e.preventDefault();
-    if (!value || !category) return;
+    if (!value || !category) {
+      setFade(true)
+      setModalForm(true)
+      return;
+    }
+    // abrir o modal avisando os negocio
+
+
+
+
     addTodo(value, category)
 
     resetInputs();
