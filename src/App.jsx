@@ -1,11 +1,9 @@
 import { useState } from "react";
 import "./styles/App.css";
 import Todo from "./components/Todo";
-import TodoForm from "./components/TodoForm";
-import Search from "./components/Search";
-import Filter from "./components/Filter";
 import Fade from "./components/Fade";
 import ModalForm from "./components/ModalForm";
+import TodoContainer from "./components/TodoContainer";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -123,19 +121,10 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <h1>Lista de Tarefas</h1>
-      <Filter
-        filter={filter}
-        setFilter={setFilter}
-        sort={sort}
-        setSort={setSort}
-      />
-      <Search search={search} setSearch={setSearch} />
-      <section className="todo_list">{checarTarefas()}</section>
-      <TodoForm addTodo={addTodo} setFade={setFade} setModalForm={setModalForm} />
-      {mostrarModal()}
-    </div>
+    <>
+    <TodoContainer filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} search={search} setSearch={setSearch} setFade={setFade} setModalForm={setModalForm} checarTarefas={checarTarefas} addTodo={addTodo} />
+    {mostrarModal()}
+    </>
   );
 }
 
