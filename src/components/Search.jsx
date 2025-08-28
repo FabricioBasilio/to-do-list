@@ -1,5 +1,3 @@
-import React from 'react'
-
 function Search({search, setSearch}) {
   return (
     <section className="search">

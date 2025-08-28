@@ -66,7 +66,7 @@ button:hover {
 }
 
 select {
-    background-color: var(--cor2);
+  background-color: var(--cor2);
 }
 
 .search,
@@ -87,20 +87,33 @@ select {
   gap: 1rem;
 }
 
+.buttons__asc_button--active button:first-child {
+  opacity: 1;
+}
+
+.buttons__desc_button--active button:last-child {
+  opacity: 1;
+}
+
 .todo_list {
   margin-bottom: 35px;
   border-bottom: solid 1px var(--cor5);
 }
 
 .todo_list__todo {
-  box-shadow: 0 0 10px var(--cor6);
+  box-shadow: outset 0 0 10px var(--cor6);
   background-color: var(--cor2);
   margin-bottom: 25px;
-  padding: 0.9rem;
+  padding: 1.5rem;
   border-radius: var(--radiusPadrao);
   display: flex;
   flex-direction: column;
   gap: 10px;
+  transition: box-shadow 0.1s linear;
+}
+
+.todo_list__todo:hover {
+  box-shadow: inset 0 0 10px var(--cor5);
 }
 
 .todo_list__todo p {
@@ -108,9 +121,14 @@ select {
   letter-spacing: 0.05rem;
 }
 
+.todo_list__todo p:last-child {
+  font-size: 0.8rem;
+}
+
 .todo_list__todo--done p:first-child {
   text-decoration: line-through;
   font-style: italic;
+  font-weight: 800;
 }
 
 .todo_list__todo__buttons {
@@ -120,7 +138,8 @@ select {
 }
 
 .todo_list__todo__buttons button {
-    width: 100px;
+  width: 100px;
+  padding: 0.5rem;
 }
 
 .buttons__complete_button {
@@ -137,16 +156,15 @@ select {
 }
 
 .todo_form__form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
 }
 
 .todo_form__form button {
-    align-self: flex-end;
-    padding: 0.3rem 1.5rem;
+  align-self: flex-end;
+  padding: 0.3rem 1.5rem;
 }
-
 
 input,
 select {

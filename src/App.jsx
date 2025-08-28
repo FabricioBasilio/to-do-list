@@ -52,6 +52,7 @@ function App() {
     );
 
     setTodos(filteredTodos);
+
   }
 
   function completeTodo(id) {
@@ -73,6 +74,7 @@ function App() {
 
   function pesquisarTarefas(todo) {
     return todo.text.toLowerCase().includes(search.toLowerCase());
+
   }
 
   function ordenarAlfabeticamente(a, b) {
@@ -95,7 +97,7 @@ function App() {
   return (
     <div className="app">
       <h1>Lista de Tarefas</h1>
-      <Filter filter={filter} setFilter={setFilter} setSort={setSort} />
+      <Filter filter={filter} setFilter={setFilter} sort={sort} setSort={setSort}  />
       <Search search={search} setSearch={setSearch} />
       <section className="todo_list">
         {todos
@@ -103,6 +105,7 @@ function App() {
           .filter(pesquisarTarefas)
           .sort(ordenarAlfabeticamente)
           .map(colocarTarefas)}
+         
       </section>
       <TodoForm addTodo={addTodo} />
     </div>

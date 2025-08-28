@@ -1,6 +1,4 @@
-import React from 'react'
-
-function Filter({ filter, setFilter, setSort }) {
+function Filter({ filter, setFilter, sort, setSort }) {
   return (
     <section className="filter">
         <h2>Filtrar</h2>
@@ -15,7 +13,7 @@ function Filter({ filter, setFilter, setSort }) {
             </div>
             <div>
                 <p>Ordem alfabética: </p>
-                <div className="filter_options__alphabetic__buttons">
+                <div className={sort === "Asc" ? "filter_options__alphabetic__buttons buttons__asc_button--active" : "filter_options__alphabetic__buttons buttons__desc_button--active"}>
                     <button onClick={() => setSort("Asc")}>Asc</button>
                     <button onClick={() => setSort("Desc")}>Desc</button>
                 </div>
