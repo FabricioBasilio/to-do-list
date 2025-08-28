@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function TodoForm({ addTodo, setFade, setModalForm }) {
+function TodoForm({ addTodo, setFade, setModalForm}) {
   const [value, setValue] = useState("");
   const [category, setCategory] = useState("");
 

@@ -4,6 +4,7 @@ import Todo from "./components/Todo";
 import Fade from "./components/Fade";
 import ModalForm from "./components/ModalForm";
 import TodoContainer from "./components/TodoContainer";
+import ModalRemove from "./components/ModalRemove";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -31,7 +32,9 @@ function App() {
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState("Asc");
   const [fade, setFade] = useState(false);
-  const [modal, setModalForm] = useState(false);
+  const [modalForm, setModalForm] = useState(false);
+  const [modalRemove, setModalRemove] = useState(false);
+  const [userRemoveAnswer, setUserRemoveAnswer] = useState(false);
 
   function addTodo(text, category) {
     const newTodos = [
@@ -48,12 +51,22 @@ function App() {
   }
 
   function removeTodo(id) {
-    const newTodos = [...todos];
-    const filteredTodos = newTodos.filter((todo) =>
-      todo.id !== id ? todo : null
-    );
+    setFade(true);
+    setModalRemove(true);
 
-    setTodos(filteredTodos);
+    console.log("No removeTodo: " + userRemoveAnswer);
+    
+
+    if (userRemoveAnswer === true) {
+      const newTodos = [...todos];
+      const filteredTodos = newTodos.filter((todo) =>
+        todo.id !== id ? todo : null
+      );
+
+      setTodos(filteredTodos);
+
+      setUserRemoveAnswer(false);
+    }
   }
 
   function completeTodo(id) {
@@ -94,12 +107,28 @@ function App() {
     );
   }
 
-  function mostrarModal() {
-    if (fade && modal) {
+  function mostrarModalForm() {
+    if (fade && modalForm) {
       return (
         <>
           <Fade />
           <ModalForm setFade={setFade} setModalForm={setModalForm} />
+        </>
+      );
+    } else return <></>;
+  }
+
+  function mostrarModalRemove() {
+    if (fade && modalRemove) {
+      return (
+        <>
+          <Fade />
+          <ModalRemove
+            setFade={setFade}
+            setModalRemove={setModalRemove}
+            setUserRemoveAnswer={setUserRemoveAnswer}
+            
+          />
         </>
       );
     } else return <></>;
@@ -122,8 +151,20 @@ function App() {
 
   return (
     <>
-    <TodoContainer filter={filter} setFilter={setFilter} sort={sort} setSort={setSort} search={search} setSearch={setSearch} setFade={setFade} setModalForm={setModalForm} checarTarefas={checarTarefas} addTodo={addTodo} />
-    {mostrarModal()}
+      <TodoContainer
+        filter={filter}
+        setFilter={setFilter}
+        sort={sort}
+        setSort={setSort}
+        search={search}
+        setSearch={setSearch}
+        setFade={setFade}
+        setModalForm={setModalForm}
+        checarTarefas={checarTarefas}
+        addTodo={addTodo}
+      />
+      {mostrarModalForm()}
+      {mostrarModalRemove()}
     </>
   );
 }
