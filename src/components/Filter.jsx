@@ -3,7 +3,7 @@ function Filter({ filter, setFilter, sort, setSort }) {
     <section className="filter">
         <h2>Filtrar</h2>
         <div className="filter_options">
-            <div>
+            <div className="filter_options__filter">
                 <p>Status: </p>
                 <select value={filter} onChange={e => setFilter(e.target.value)}>
                     <option value="All">Todas</option>
@@ -11,7 +11,7 @@ function Filter({ filter, setFilter, sort, setSort }) {
                     <option value="Incomplete">Incompletas</option>
                 </select>
             </div>
-            <div>
+            <div className="filter_options__alphabetic">
                 <p>Ordem alfabética: </p>
                 <div className={sort === "Asc" ? "filter_options__alphabetic__buttons buttons__asc_button--active" : "filter_options__alphabetic__buttons buttons__desc_button--active"}>
                     <button onClick={() => setSort("Asc")}>Asc</button>
