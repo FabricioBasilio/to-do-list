@@ -13,7 +13,7 @@
   --cor4: #db0808;
   --cor5: #555555;
   --cor6: #0000001a;
-  --cor7: #e9ebe8;
+  --cor7: #e9ebe8e8;
 
   --radiusPadrao: 0.5rem;
 }
@@ -22,14 +22,20 @@
 
 body {
   background-image: url("/src/assets/images/background-image.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
 }
 
 /* card da todo list */
 
 .app {
   width: 90%;
+  max-width: 750px;
   margin: 30px auto 30px auto;
   background-color: var(--cor7);
+  backdrop-filter: blur(5px);
   padding: 15px 20px;
   border-radius: var(--radiusPadrao);
 }
@@ -100,6 +106,12 @@ select {
   border-bottom: solid 1px var(--cor5);
 }
 
+.todo_list__feedback {
+  text-align: center;
+  line-height: 1.5rem;
+  letter-spacing: 0.05rem;
+}
+
 .todo_list__todo {
   box-shadow: outset 0 0 10px var(--cor6);
   background-color: var(--cor2);
@@ -112,8 +124,8 @@ select {
   transition: box-shadow 0.1s linear;
 }
 
-.todo_list__todo:hover {
-  box-shadow: inset 0 0 10px var(--cor5);
+.todo_list__todo:hover  {
+  box-shadow: inset 0 0 5px var(--cor5);
 }
 
 .todo_list__todo p {
