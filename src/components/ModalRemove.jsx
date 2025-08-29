@@ -1,9 +1,7 @@
 function ModalRemove({ setFade, setModalRemove, setUserRemoveAnswer }) {
-  function getUserRemoveAnswer(userRemoveAnswer) {
-    setUserRemoveAnswer(Boolean(userRemoveAnswer));
+  function getUserRemoveAnswer(answer) {
+    setUserRemoveAnswer(Boolean(answer));
     hideModalRemove();
-    console.log("No modal: " + Boolean(userRemoveAnswer));
-    
   }
 
   function hideModalRemove() {
@@ -11,19 +9,11 @@ function ModalRemove({ setFade, setModalRemove, setUserRemoveAnswer }) {
     setModalRemove(false);
   }
 
-  
-
   return (
     <div className="modal_details">
       <p>Você tem certeza que deseja remover essa tarefa?</p>
-      <button onClick={() => getUserRemoveAnswer(true)}>
-        Sim
-      </button>
-      <button
-        onClick={() => getUserRemoveAnswer(false)}
-      >
-        Não
-      </button>
+      <button onClick={() => getUserRemoveAnswer(true)}>Sim</button>
+      <button onClick={() => getUserRemoveAnswer(false)}>Não</button>
     </div>
   );
 }

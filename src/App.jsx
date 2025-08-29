@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles/App.css";
 import Todo from "./components/Todo";
 import Fade from "./components/Fade";
@@ -16,7 +16,7 @@ function App() {
     },
     {
       id: 2,
-      text: "Fazer projeto com React",
+      text: "Fazer projeto com react",
       category: "Trabalho",
       isDone: false,
     },
@@ -35,6 +35,8 @@ function App() {
   const [modalForm, setModalForm] = useState(false);
   const [modalRemove, setModalRemove] = useState(false);
   const [userRemoveAnswer, setUserRemoveAnswer] = useState(false);
+  //id da tarefa a deletar
+  const [todoRemoveId, setTodoRemoveId] = useState("");
 
   function addTodo(text, category) {
     const newTodos = [
@@ -51,22 +53,46 @@ function App() {
   }
 
   function removeTodo(id) {
+    // o id está correto
+    
+    // não dá update imediato valor certo
+    // use effect depois
+
+    setTodoRemoveId(id);
+
     setFade(true);
     setModalRemove(true);
 
-    console.log("No removeTodo: " + userRemoveAnswer);
+
+  }
+
+  useEffect(() => {
+    console.log("USE REMOVE ANNSWER NO EFFECT NO APP: " + userRemoveAnswer);
+    console.log("TODO REMOVE ID NO EFFECT NO APP: " + todoRemoveId);
+
+    if (userRemoveAnswer) deleteTodo(todoRemoveId);
+    
+    // deleteTodo no array de dependencias ou não, fica esse problema que não interrompe nada no código
+  }, [userRemoveAnswer, todoRemoveId])
+
+
+  function deleteTodo(id) {
+    console.log("Id na função final delete todo: " + id);
     
 
-    if (userRemoveAnswer === true) {
-      const newTodos = [...todos];
-      const filteredTodos = newTodos.filter((todo) =>
-        todo.id !== id ? todo : null
-      );
+    const newTodos = [...todos];
+    const filteredTodos = newTodos.filter((todo) =>
+      todo.id !== id ? todo : null
+    );
 
-      setTodos(filteredTodos);
+    setTodos(filteredTodos);
 
-      setUserRemoveAnswer(false);
-    }
+    console.log("Tarefas sem a deletada: " + filteredTodos);
+    
+
+    setUserRemoveAnswer(false);
+
+    setTodoRemoveId("")
   }
 
   function completeTodo(id) {
@@ -126,8 +152,10 @@ function App() {
           <ModalRemove
             setFade={setFade}
             setModalRemove={setModalRemove}
+            userRemoveAnswer={userRemoveAnswer}
             setUserRemoveAnswer={setUserRemoveAnswer}
-            
+            todoRemoveId={todoRemoveId}
+            deleteTodo={deleteTodo}
           />
         </>
       );
