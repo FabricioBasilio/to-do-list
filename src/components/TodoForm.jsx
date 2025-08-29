@@ -1,13 +1,22 @@
 import { useState } from "react";
 
-function TodoForm({ addTodo }) {
+function TodoForm({ addTodo, setFade, setModalForm}) {
   const [value, setValue] = useState("");
   const [category, setCategory] = useState("");
 
+  
   function handleFormSubmit(e) {
     e.preventDefault();
-    alert(value + category)
-    if (!value || !category) return;
+    if (!value || !category) {
+      setFade(true)
+      setModalForm(true)
+      return;
+    }
+    // abrir o modal avisando os negocio
+
+
+
+
     addTodo(value, category)
 
     resetInputs();
@@ -23,9 +32,11 @@ function TodoForm({ addTodo }) {
   return (
       <section className="todo_form">
         <h2>Adicionar tarefa: </h2>
-        <form onSubmit={handleFormSubmit}>
-            <input type="text" placeholder="Digite o título..." value={value} onChange={e => setValue(e.target.value)}/>
-            <select value={category} onChange={e => setCategory(e.target.value)}>
+        <form className="todo_form__form" onSubmit={handleFormSubmit}>
+          <label htmlFor="texto_adicionar_tarefa">O que fazer:</label>
+            <input type="text" placeholder="Digite a tarefa..." value={value} id="texto_adicionar_tarefa" onChange={e => setValue(e.target.value)}/>
+          <label htmlFor="categoria_adicionar_tarefa">Categoria:</label>
+            <select value={category} id="categoria_adicionar_tarefa" onChange={e => setCategory(e.  target.value)}>
                 <option value="">Selecione uma categoria</option>
                 <option value="Trabalho">Trabalho</option>
                 <option value="Pessoal">Pessoal</option>
