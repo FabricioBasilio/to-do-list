@@ -1,11 +1,11 @@
 function Filter({ filter, setFilter, sort, setSort }) {
   return (
     <section className="filter">
-        <h2>Filtrar</h2>
+        <label htmlFor="select_filter">Filtrar</label>
         <div className="filter_options">
             <div className="filter_options__filter">
                 <p>Status: </p>
-                <select value={filter} onChange={e => setFilter(e.target.value)}>
+                <select value={filter} id="select_filter" onChange={e => setFilter(e.target.value)}>
                     <option value="All">Todas</option>
                     <option value="Done">Feitas</option>
                     <option value="Incomplete">Incompletas</option>

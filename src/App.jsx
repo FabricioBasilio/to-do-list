@@ -174,7 +174,7 @@ function App() {
   }
 
   return (
-    <>
+    <main>
       <TodoContainer
         filter={filter}
         setFilter={setFilter}
@@ -189,7 +189,7 @@ function App() {
       />
       {mostrarModalForm()}
       {mostrarModalRemove()}
-    </>
+    </main>
   );
 }
 

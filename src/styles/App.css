@@ -46,8 +46,11 @@ h1 {
   margin: 15px 0 25px 0;
 }
 
-h2 {
-  margin-bottom: 20px;
+label {
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  display: block;
 }
 
 p {
@@ -102,14 +105,12 @@ select {
   flex: 80%;
   border-radius: var(--radiusPadrao) 0 0 var(--radiusPadrao);
   margin-bottom: 0;
-
 }
 
 .search__container button {
   flex: 20%;
   border-radius: 0 var(--radiusPadrao) var(--radiusPadrao) 0;
 }
-
 
 .filter_options {
   display: flex;
@@ -163,7 +164,7 @@ select {
 }
 
 .todo_list__todo p:last-child {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .todo_list__todo--done p:first-child {
@@ -196,10 +197,20 @@ select {
   margin-bottom: 1.5rem;
 }
 
+.todo_form h2 {
+  margin-bottom: 1.5rem;
+}
+
 .todo_form__form {
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
+}
+
+.todo_form__form label {
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+  font-size: 1.2rem;
 }
 
 .todo_form__form button {
