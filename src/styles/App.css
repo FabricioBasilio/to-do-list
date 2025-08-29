@@ -248,6 +248,20 @@ select {
   align-self: center;
 }
 
+.modal_remove {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal_remove p {
+  text-align: center;
+}
+
+.modal_remove .modal_remove__buttons {
+  display: flex;
+  gap: 3rem;
+}
+
 @media screen and (min-width: 700px) {
   .filter_options {
     flex-direction: row;

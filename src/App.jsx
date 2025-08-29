@@ -67,8 +67,6 @@ function App() {
   }
 
   useEffect(() => {
-    console.log("USE REMOVE ANNSWER NO EFFECT NO APP: " + userRemoveAnswer);
-    console.log("TODO REMOVE ID NO EFFECT NO APP: " + todoRemoveId);
 
     if (userRemoveAnswer) deleteTodo(todoRemoveId);
     
@@ -77,7 +75,6 @@ function App() {
 
 
   function deleteTodo(id) {
-    console.log("Id na função final delete todo: " + id);
     
 
     const newTodos = [...todos];
@@ -87,7 +84,6 @@ function App() {
 
     setTodos(filteredTodos);
 
-    console.log("Tarefas sem a deletada: " + filteredTodos);
     
 
     setUserRemoveAnswer(false);
