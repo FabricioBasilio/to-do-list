@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles/App.css";
 import Todo from "./components/Todo";
 import Fade from "./components/Fade";
@@ -37,6 +37,7 @@ function App() {
   const [userRemoveAnswer, setUserRemoveAnswer] = useState(false);
   //id da tarefa a deletar
   const [todoRemoveId, setTodoRemoveId] = useState("");
+  const modalFormButton = useRef(null)
 
   function addTodo(text, category) {
     const newTodos = [
@@ -62,7 +63,7 @@ function App() {
 
     setFade(true);
     setModalRemove(true);
-
+    
 
   }
 
@@ -72,6 +73,15 @@ function App() {
     
     // deleteTodo no array de dependencias ou não, fica esse problema que não interrompe nada no código
   }, [userRemoveAnswer, todoRemoveId])
+
+
+  useEffect(() => {
+    // foco no botao
+    if (modalForm === true) {
+    console.log(modalFormButton.current);
+    modalFormButton.current.focus()
+    }
+  }, [modalForm])
 
 
   function deleteTodo(id) {
@@ -134,7 +144,7 @@ function App() {
       return (
         <>
           <Fade />
-          <ModalForm setFade={setFade} setModalForm={setModalForm} />
+          <ModalForm setFade={setFade} setModalForm={setModalForm} modalFormButton={modalFormButton}/>
         </>
       );
     } else return <></>;
