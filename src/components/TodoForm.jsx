@@ -7,7 +7,7 @@ function TodoForm({ addTodo, setFade, setModalForm}) {
   
   function handleFormSubmit(e) {
     e.preventDefault();
-    if (!value || !category) {
+    if (!(value.trim()) || !category) {
       setFade(true)
       setModalForm(true)
       return;
