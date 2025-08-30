@@ -69,8 +69,21 @@ function App() {
   useEffect(() => {
     if (userRemoveAnswer) deleteTodo(todoRemoveId);
 
+    function deleteTodo(id) {
+      const newTodos = [...todos];
+      const filteredTodos = newTodos.filter((todo) =>
+        todo.id !== id ? todo : null
+      );
+
+      setTodos(filteredTodos);
+
+      setUserRemoveAnswer(false);
+
+      setTodoRemoveId("");
+    }
+
     // deleteTodo no array de dependencias ou não, fica esse problema que não interrompe nada no código
-  }, [userRemoveAnswer, todoRemoveId]);
+  }, [userRemoveAnswer, todoRemoveId, todos]);
 
   useEffect(() => {
     // foco nos botoes
@@ -78,19 +91,6 @@ function App() {
 
     if (modalForm) modalFormButton.current.focus();
   }, [modalForm, modalRemove]);
-
-  function deleteTodo(id) {
-    const newTodos = [...todos];
-    const filteredTodos = newTodos.filter((todo) =>
-      todo.id !== id ? todo : null
-    );
-
-    setTodos(filteredTodos);
-
-    setUserRemoveAnswer(false);
-
-    setTodoRemoveId("");
-  }
 
   function completeTodo(id) {
     const newTodos = [...todos];
