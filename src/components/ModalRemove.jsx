@@ -1,4 +1,4 @@
-function ModalRemove({ setFade, setModalRemove, setUserRemoveAnswer }) {
+function ModalRemove({ setFade, setModalRemove, setUserRemoveAnswer,             modalRemoveNotButton }) {
   function getUserRemoveAnswer(answer) {
     setUserRemoveAnswer(Boolean(answer));
     hideModalRemove();
@@ -14,7 +14,7 @@ function ModalRemove({ setFade, setModalRemove, setUserRemoveAnswer }) {
       <p>Você tem certeza que deseja remover essa tarefa?</p>
       <div className="modal_remove__buttons">
         <button onClick={() => getUserRemoveAnswer(true)}>Sim</button>
-        <button onClick={() => getUserRemoveAnswer(false)}>Não</button>
+        <button ref={modalRemoveNotButton} onClick={() => getUserRemoveAnswer(false)}>Não</button>
       </div>
     </div>
   );

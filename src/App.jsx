@@ -37,7 +37,8 @@ function App() {
   const [userRemoveAnswer, setUserRemoveAnswer] = useState(false);
   //id da tarefa a deletar
   const [todoRemoveId, setTodoRemoveId] = useState("");
-  const modalFormButton = useRef(null)
+  const modalFormButton = useRef(null);
+  const modalRemoveNotButton = useRef(null);
 
   function addTodo(text, category) {
     const newTodos = [
@@ -55,7 +56,7 @@ function App() {
 
   function removeTodo(id) {
     // o id está correto
-    
+
     // não dá update imediato valor certo
     // use effect depois
 
@@ -63,30 +64,22 @@ function App() {
 
     setFade(true);
     setModalRemove(true);
-    
-
   }
 
   useEffect(() => {
-
     if (userRemoveAnswer) deleteTodo(todoRemoveId);
-    
-    // deleteTodo no array de dependencias ou não, fica esse problema que não interrompe nada no código
-  }, [userRemoveAnswer, todoRemoveId])
 
+    // deleteTodo no array de dependencias ou não, fica esse problema que não interrompe nada no código
+  }, [userRemoveAnswer, todoRemoveId]);
 
   useEffect(() => {
-    // foco no botao
-    if (modalForm === true) {
-    console.log(modalFormButton.current);
-    modalFormButton.current.focus()
-    }
-  }, [modalForm])
+    // foco nos botoes
+    if (modalRemove) modalRemoveNotButton.current.focus();
 
+    if (modalForm) modalFormButton.current.focus();
+  }, [modalForm, modalRemove]);
 
   function deleteTodo(id) {
-    
-
     const newTodos = [...todos];
     const filteredTodos = newTodos.filter((todo) =>
       todo.id !== id ? todo : null
@@ -94,11 +87,9 @@ function App() {
 
     setTodos(filteredTodos);
 
-    
-
     setUserRemoveAnswer(false);
 
-    setTodoRemoveId("")
+    setTodoRemoveId("");
   }
 
   function completeTodo(id) {
@@ -144,7 +135,11 @@ function App() {
       return (
         <>
           <Fade />
-          <ModalForm setFade={setFade} setModalForm={setModalForm} modalFormButton={modalFormButton}/>
+          <ModalForm
+            setFade={setFade}
+            setModalForm={setModalForm}
+            modalFormButton={modalFormButton}
+          />
         </>
       );
     } else return <></>;
@@ -158,10 +153,8 @@ function App() {
           <ModalRemove
             setFade={setFade}
             setModalRemove={setModalRemove}
-            userRemoveAnswer={userRemoveAnswer}
             setUserRemoveAnswer={setUserRemoveAnswer}
-            todoRemoveId={todoRemoveId}
-            deleteTodo={deleteTodo}
+            modalRemoveNotButton={modalRemoveNotButton}
           />
         </>
       );
