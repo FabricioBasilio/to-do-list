@@ -2,6 +2,7 @@ function CheckboxModalRemove({checkboxModalRemove, setCheckboxModalRemove}) {
   return (
     <section className="checkbox">
       <input type="checkbox" id="removeTodoCheckbox" onClick={() => setCheckboxModalRemove(!checkboxModalRemove)}/>
+      <span></span>
       <label htmlFor="removeTodoCheckbox">Perguntar antes de remover</label>
     </section>
   );

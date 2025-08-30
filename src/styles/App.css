@@ -14,7 +14,9 @@
   --cor5: #555555;
   --cor6: #0000001a;
   --cor7: #e9ebe8e8;
+  --cor8: #1B2845;
 
+  --corOutline: var(--cor8);
   --corFade: #00000080;
   --radiusPadrao: 0.5rem;
 }
@@ -76,6 +78,10 @@ button:focus {
   opacity: 1;
 }
 
+button:focus, select:focus, input:focus, .checkbox input:focus ~ span {
+  outline: solid 0.2rem var(--corOutline);
+}
+
 input,
 select {
   border-radius: var(--radiusPadrao);
@@ -90,7 +96,9 @@ select {
   background-color: var(--cor2);
 }
 
-.filter, .checkbox, .search {
+.filter,
+.checkbox,
+.search {
   border-bottom: solid 1px var(--cor5);
   padding-bottom: 25px;
   margin-bottom: 25px;
@@ -101,24 +109,68 @@ select {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
+  position: relative;
 }
 
 .checkbox input[type="checkbox"] {
-  width: initial;
   margin-bottom: 0;
-  background-color: var(--cor1);
-  color: var(--cor2);
-  padding: 5px 10px;
-  border: none;
-  border-radius: var(--radiusPadrao);
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
 
+.checkbox span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: var(--cor1);
+  opacity: 0.4;
+}
+
+.checkbox:hover input ~ span {
+  opacity: 0.8;
+}
+
+.checkbox input:focus ~ span {
+  opacity: 0.8;
+}
+
+.checkbox input:checked ~ span {
+  opacity: 1;
+}
+
+.checkbox span:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox input:checked ~ span:after {
+  display: block;
+}
+
+.checkbox span:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--cor2);
+  border-width: 0 2.5px 2.5px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .checkbox label {
   font-size: 1.1rem;
   font-weight: normal;
   margin-bottom: 0;
+  margin-left: 2rem;
+  margin-top: 0.15rem;
 }
 
 .search__container {
