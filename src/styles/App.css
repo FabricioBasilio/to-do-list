@@ -90,11 +90,35 @@ select {
   background-color: var(--cor2);
 }
 
-.search,
-.filter {
+.filter, .checkbox, .search {
   border-bottom: solid 1px var(--cor5);
   padding-bottom: 25px;
   margin-bottom: 25px;
+}
+
+.checkbox {
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.checkbox input[type="checkbox"] {
+  width: initial;
+  margin-bottom: 0;
+  background-color: var(--cor1);
+  color: var(--cor2);
+  padding: 5px 10px;
+  border: none;
+  border-radius: var(--radiusPadrao);
+
+}
+
+.checkbox label {
+  font-size: 1.1rem;
+  font-weight: normal;
+  margin-bottom: 0;
 }
 
 .search__container {

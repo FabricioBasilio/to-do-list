@@ -1,4 +1,4 @@
-function ModalRemove({ setFade, setModalRemove, setUserRemoveAnswer,             modalRemoveNotButton }) {
+function ModalRemove({ setFade, setModalRemove, setUserRemoveAnswer,          modalRemoveNotButton }) {
   function getUserRemoveAnswer(answer) {
     setUserRemoveAnswer(Boolean(answer));
     hideModalRemove();

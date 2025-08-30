@@ -37,6 +37,8 @@ function App() {
   const [userRemoveAnswer, setUserRemoveAnswer] = useState(false);
   //id da tarefa a deletar
   const [todoRemoveId, setTodoRemoveId] = useState("");
+  const [checkboxModalRemove, setCheckboxModalRemove] = useState(false);
+
   const modalFormButton = useRef(null);
   const modalRemoveNotButton = useRef(null);
 
@@ -62,28 +64,19 @@ function App() {
 
     setTodoRemoveId(id);
 
-    setFade(true);
-    setModalRemove(true);
+    if (checkboxModalRemove === true) {
+      setFade(true); // mostrar se ativo o checkbox
+      setModalRemove(true); // mostrar se ativo o checkbox
+    }
+    // remover no else
+    else deleteTodo(id);
   }
 
   useEffect(() => {
     if (userRemoveAnswer) deleteTodo(todoRemoveId);
 
-    function deleteTodo(id) {
-      const newTodos = [...todos];
-      const filteredTodos = newTodos.filter((todo) =>
-        todo.id !== id ? todo : null
-      );
-
-      setTodos(filteredTodos);
-
-      setUserRemoveAnswer(false);
-
-      setTodoRemoveId("");
-    }
-
     // deleteTodo no array de dependencias ou não, fica esse problema que não interrompe nada no código
-  }, [userRemoveAnswer, todoRemoveId, todos]);
+  }, [userRemoveAnswer, todoRemoveId]);
 
   useEffect(() => {
     // foco nos botoes
@@ -91,6 +84,23 @@ function App() {
 
     if (modalForm) modalFormButton.current.focus();
   }, [modalForm, modalRemove]);
+
+  useEffect(() => {
+    console.log("Valor do ESTADO do checkbox: " + checkboxModalRemove);
+  }, [checkboxModalRemove]);
+
+  function deleteTodo(id) {
+    const newTodos = [...todos];
+    const filteredTodos = newTodos.filter((todo) =>
+      todo.id !== id ? todo : null
+    );
+
+    setTodos(filteredTodos);
+
+    setUserRemoveAnswer(false);
+
+    setTodoRemoveId("");
+  }
 
   function completeTodo(id) {
     const newTodos = [...todos];
@@ -187,6 +197,8 @@ function App() {
         setSearch={setSearch}
         setFade={setFade}
         setModalForm={setModalForm}
+        checkboxModalRemove={checkboxModalRemove}
+        setCheckboxModalRemove={setCheckboxModalRemove}
         checarTarefas={checarTarefas}
         addTodo={addTodo}
       />
