@@ -14,7 +14,7 @@
   --cor5: #555555;
   --cor6: #0000001a;
   --cor7: #e9ebe8e8;
-  --cor8: #1B2845;
+  --cor8: #1b2845;
 
   --corOutline: var(--cor8);
   --corFade: #00000080;
@@ -78,11 +78,15 @@ button:focus {
   opacity: 1;
 }
 
-button:focus, select:focus, input:focus, .checkbox input:focus ~ span {
+button:focus,
+select:focus,
+input:focus,
+.checkbox input:focus ~ span {
   outline: solid 0.2rem var(--corOutline);
 }
 
-select, input[type="checkbox"] ~ span {
+select,
+input[type="checkbox"] ~ span {
   cursor: pointer;
 }
 
@@ -143,22 +147,19 @@ select {
   opacity: 0.8;
 }
 
-/* .checkbox input:checked ~ span {
-  opacity: 1;
-} */
-
 .checkbox span:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-.checkbox input.checkbox--ativo ~ span, .checkbox span.checkbox--ativo {
+.checkbox input.checkbox--ativo ~ span,
+.checkbox span.checkbox--ativo {
   opacity: 1;
 }
 
-
-.checkbox input.checkbox--ativo ~ span:after, .checkbox span.checkbox--ativo:after {
+.checkbox input.checkbox--ativo ~ span:after,
+.checkbox span.checkbox--ativo:after {
   display: block;
   opacity: 1;
 }

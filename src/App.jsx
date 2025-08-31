@@ -8,24 +8,7 @@ import ModalRemove from "./components/ModalRemove";
 
 function App() {
   const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: "Fazer projeto todo list",
-      category: "Trabalho",
-      isDone: false,
-    },
-    {
-      id: 2,
-      text: "Fazer projeto com react",
-      category: "Trabalho",
-      isDone: false,
-    },
-    {
-      id: 3,
-      text: "Ir à academia",
-      category: "Pessoal",
-      isDone: false,
-    },
+    
   ]);
 
   const [search, setSearch] = useState("");
@@ -35,7 +18,6 @@ function App() {
   const [modalForm, setModalForm] = useState(false);
   const [modalRemove, setModalRemove] = useState(false);
   const [userRemoveAnswer, setUserRemoveAnswer] = useState(false);
-  //id da tarefa a deletar
   const [todoRemoveId, setTodoRemoveId] = useState("");
   const [checkboxModalRemove, setCheckboxModalRemove] = useState(false);
 
@@ -57,37 +39,23 @@ function App() {
   }
 
   function removeTodo(id) {
-    // o id está correto
-
-    // não dá update imediato valor certo
-    // use effect depois
-
     setTodoRemoveId(id);
 
     if (checkboxModalRemove === true) {
-      setFade(true); // mostrar se ativo o checkbox
-      setModalRemove(true); // mostrar se ativo o checkbox
-    }
-    // remover no else
-    else deleteTodo(id);
+      setFade(true);
+      setModalRemove(true);
+    } else deleteTodo(id);
   }
 
   useEffect(() => {
     if (userRemoveAnswer) deleteTodo(todoRemoveId);
-
-    // deleteTodo no array de dependencias ou não, fica esse problema que não interrompe nada no código
   }, [userRemoveAnswer, todoRemoveId]);
 
   useEffect(() => {
-    // foco nos botoes
     if (modalRemove) modalRemoveNotButton.current.focus();
 
     if (modalForm) modalFormButton.current.focus();
   }, [modalForm, modalRemove]);
-
-  useEffect(() => {
-    console.log("Valor do ESTADO do checkbox: " + checkboxModalRemove);
-  }, [checkboxModalRemove]);
 
   function deleteTodo(id) {
     const newTodos = [...todos];
@@ -172,7 +140,6 @@ function App() {
   }
 
   function checarTarefas() {
-    // Quando há 0 tarefas
     return todos.length === 0 ? (
       <p className="todo_list__feedback">
         Nenhuma tarefa aqui, tenha um bom dia :D

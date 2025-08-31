@@ -1,7 +1,5 @@
 function Fade() {
-  return (
-    <div className="fade"></div>
-  )
+  return <div className="fade"></div>;
 }
 
-export default Fade
+export default Fade;
