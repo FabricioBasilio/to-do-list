@@ -82,6 +82,10 @@ button:focus, select:focus, input:focus, .checkbox input:focus ~ span {
   outline: solid 0.2rem var(--corOutline);
 }
 
+select, input[type="checkbox"] ~ span {
+  cursor: pointer;
+}
+
 input,
 select {
   border-radius: var(--radiusPadrao);
@@ -139,9 +143,9 @@ select {
   opacity: 0.8;
 }
 
-.checkbox input:checked ~ span {
+/* .checkbox input:checked ~ span {
   opacity: 1;
-}
+} */
 
 .checkbox span:after {
   content: "";
@@ -149,8 +153,14 @@ select {
   display: none;
 }
 
-.checkbox input:checked ~ span:after {
+.checkbox input.checkbox--ativo ~ span, .checkbox span.checkbox--ativo {
+  opacity: 1;
+}
+
+
+.checkbox input.checkbox--ativo ~ span:after, .checkbox span.checkbox--ativo:after {
   display: block;
+  opacity: 1;
 }
 
 .checkbox span:after {
