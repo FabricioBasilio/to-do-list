@@ -1,4 +1,4 @@
-function Todo({ todo, completeTodo, removeTodo }) {
+function Todo({ todo, completeTodo, editTodo, removeTodo }) {
   return (
     <section
       className={
@@ -17,6 +17,9 @@ function Todo({ todo, completeTodo, removeTodo }) {
           onClick={() => removeTodo(todo.id)}
         >
           Remover
+        </button>
+        <button className="buttons__edit_button" onClick={() => editTodo(todo.id)}>
+          Editar
         </button>
         <button
           className="buttons__complete_button"

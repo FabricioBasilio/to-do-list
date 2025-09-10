@@ -263,16 +263,21 @@ select {
 .todo_list__todo__buttons {
   align-self: center;
   display: flex;
-  gap: 20px;
+  gap: 0.55rem;
 }
 
 .todo_list__todo__buttons button {
-  width: 100px;
+  width: 80px;
   padding: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .buttons__complete_button {
   background-color: var(--cor3);
+}
+
+.buttons__edit_button {
+  background-color: var(--cor8);
 }
 
 .buttons__remove_button {
@@ -358,6 +363,10 @@ select {
 .modal_remove .modal_remove__buttons {
   display: flex;
   gap: 3rem;
+}
+
+.modal_edit {
+  color: blue;
 }
 
 @media screen and (min-width: 700px) {

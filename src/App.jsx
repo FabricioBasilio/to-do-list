@@ -5,10 +5,16 @@ import Fade from "./components/Fade";
 import ModalForm from "./components/ModalForm";
 import TodoContainer from "./components/TodoContainer";
 import ModalRemove from "./components/ModalRemove";
+import ModalEdit from "./components/ModalEdit";
 
 function App() {
   const [todos, setTodos] = useState([
-    
+    {
+      id: Math.floor(Math.random() * 10000),
+      text: "melhorar projeto",
+      category: "eu sei la",
+      isDone: false,
+    },
   ]);
 
   const [search, setSearch] = useState("");
@@ -17,6 +23,7 @@ function App() {
   const [fade, setFade] = useState(false);
   const [modalForm, setModalForm] = useState(false);
   const [modalRemove, setModalRemove] = useState(false);
+  const [modalEdit, setModalEdit] = useState(false);
   const [userRemoveAnswer, setUserRemoveAnswer] = useState(false);
   const [todoRemoveId, setTodoRemoveId] = useState("");
   const [checkboxModalRemove, setCheckboxModalRemove] = useState(false);
@@ -79,6 +86,12 @@ function App() {
     setTodos(newTodos);
   }
 
+  function editTodo(id) {
+    setFade(true);
+    setModalEdit(true);
+    console.log("editar todo do id: " + id);
+  }
+
   function filtrarTarefas(todo) {
     return filter === "All"
       ? true
@@ -103,6 +116,7 @@ function App() {
         key={todo.id}
         todo={todo}
         completeTodo={completeTodo}
+        editTodo={editTodo}
         removeTodo={removeTodo}
       />
     );
@@ -134,6 +148,17 @@ function App() {
             setUserRemoveAnswer={setUserRemoveAnswer}
             modalRemoveNotButton={modalRemoveNotButton}
           />
+        </>
+      );
+    } else return <></>;
+  }
+
+  function mostrarModalEdit() {
+    if (fade && modalEdit) {
+      return (
+        <>
+          <Fade />
+          <ModalEdit setFade={setFade} setModalEdit={setModalEdit} />
         </>
       );
     } else return <></>;
@@ -171,6 +196,7 @@ function App() {
       />
       {mostrarModalForm()}
       {mostrarModalRemove()}
+      {mostrarModalEdit()}
     </main>
   );
 }
