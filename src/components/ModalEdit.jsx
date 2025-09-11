@@ -11,8 +11,12 @@ function ModalEdit({ setFade, setModalEdit }) {
 
   return (
     <div className="modal_details modal_edit">
-      <p>Editar tarefa</p>
-      <div className="botoes">
+      <label htmlFor="input_edicao">
+        <p>Editar tarefa</p>
+      </label>
+      <textarea id="input_edicao" rows={"5"}></textarea>
+
+      <div className="modal_edit__buttons">
         <button onClick={descartarEdicao}>Descartar</button>
         <button onClick={reescreverEdicao}>Reescrever</button>
       </div>

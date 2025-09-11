@@ -81,6 +81,7 @@ button:focus {
 button:focus,
 select:focus,
 input:focus,
+textarea:focus,
 .checkbox input:focus ~ span {
   outline: solid 0.2rem var(--corOutline);
 }
@@ -91,7 +92,8 @@ input[type="checkbox"] ~ span {
 }
 
 input,
-select {
+select,
+textarea {
   border-radius: var(--radiusPadrao);
   padding: 10px;
   margin-bottom: 10px;
@@ -366,7 +368,23 @@ select {
 }
 
 .modal_edit {
-  color: blue;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modal_edit p, .modal_edit label {
+  margin-bottom: 0.2rem;
+}
+
+.modal_edit textarea {
+  resize: none;
+  width: 100%;
+}
+
+.modal_edit .modal_edit__buttons {
+  display: flex;
+  gap: 2rem;
 }
 
 @media screen and (min-width: 700px) {
