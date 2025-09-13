@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CharacterCounter from "./CharacterCounter";
 
 function ModalCategory({
   setFade,
@@ -7,6 +8,8 @@ function ModalCategory({
   setCategories,
   modalCategoryInput,
 }) {
+  const charactersLimit = 20;
+
   const [newCategoryName, setNewCategoryName] = useState("");
 
   useEffect(() => {
@@ -20,12 +23,11 @@ function ModalCategory({
   }
 
   function adicionarCategoria() {
-
     const newCategories = [
       ...categories,
       {
         id: Math.floor(Math.random() * 10000),
-        categoryName: newCategoryName,
+        categoryName: newCategoryName.trim(),
       },
     ];
 
@@ -36,7 +38,7 @@ function ModalCategory({
   }
 
   function mudarTexto(e) {
-    setNewCategoryName(e.target.value.trim());
+    setNewCategoryName(e.target.value);
   }
 
   return (
@@ -45,10 +47,11 @@ function ModalCategory({
       <input
         id="nova_categoria_texto"
         type="text"
-        maxLength={20}
+        maxLength={charactersLimit}
         ref={modalCategoryInput}
         onChange={(e) => mudarTexto(e)}
       />
+      <CharacterCounter valueLength={newCategoryName.length} limit={charactersLimit}/>
       <div className="modal_category__buttons">
         <button onClick={descartarCategoria}>Descartar</button>
         <button onClick={adicionarCategoria}>Adicionar</button>
