@@ -38,7 +38,7 @@ function ModalEdit({ setFade, setModalEdit, todoEditId, todos, setTodos }) {
   }
 
   function mudarTexto(e) {
-    setTodoToEditText(e.target.value);
+    setTodoToEditText(e.target.value.trim());
   }
 
   return (
