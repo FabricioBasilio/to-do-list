@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 
-function ModalCategory({ setFade, setModalCategory, modalCategoryInput }) {
+function ModalCategory({
+  setFade,
+  setModalCategory,
+  categories,
+  setCategories,
+  modalCategoryInput,
+}) {
   const [newCategoryName, setNewCategoryName] = useState("");
 
   useEffect(() => {
     console.log(newCategoryName);
-    
-  }, [newCategoryName])
+  }, [newCategoryName]);
 
   function descartarCategoria() {
     setNewCategoryName("");
@@ -15,13 +20,23 @@ function ModalCategory({ setFade, setModalCategory, modalCategoryInput }) {
   }
 
   function adicionarCategoria() {
+
+    const newCategories = [
+      ...categories,
+      {
+        id: Math.floor(Math.random() * 10000),
+        categoryName: newCategoryName,
+      },
+    ];
+
+    setCategories(newCategories);
+
     setFade(false);
     setModalCategory(false);
   }
 
   function mudarTexto(e) {
     setNewCategoryName(e.target.value.trim());
-    
   }
 
   return (

@@ -18,6 +18,25 @@ function App() {
     },
   ]);
 
+  const [categories, setCategories] = useState([
+    {
+      id: Math.floor(Math.random() * 10000),
+      categoryName: "Pessoal",
+    },
+    {
+      id: Math.floor(Math.random() * 10000),
+      categoryName: "Estudos",
+    },
+    {
+      id: Math.floor(Math.random() * 10000),
+      categoryName: "Trabalho",
+    },
+    {
+      id: Math.floor(Math.random() * 10000),
+      categoryName: "Esporte",
+    },
+  ]);
+
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
   const [sort, setSort] = useState("Asc");
@@ -188,6 +207,8 @@ function App() {
           <ModalCategory
             setFade={setFade}
             setModalCategory={setModalCategory}
+            categories={categories}
+            setCategories={setCategories}
             modalCategoryInput={modalCategoryInput}
           />
         </>
@@ -225,6 +246,7 @@ function App() {
         checarTarefas={checarTarefas}
         addTodo={addTodo}
         setModalCategory={setModalCategory}
+        categories={categories}
       />
       {mostrarModalForm()}
       {mostrarModalRemove()}

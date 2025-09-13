@@ -1,28 +1,11 @@
 import { useState } from "react";
 import Options from "./Options";
 
-function TodoForm({ addTodo, setFade, setModalForm, setModalCategory}) {
+function TodoForm({ addTodo, setFade, setModalForm, setModalCategory, categories}) {
   const [value, setValue] = useState("");
   const [category, setCategory] = useState("");
 
-  const [categories, setCategories] = useState([
-    {
-      id: Math.floor(Math.random() * 10000),
-      categoryName: "Pessoal",
-    },
-    {
-      id: Math.floor(Math.random() * 10000),
-      categoryName: "Estudos",
-    },
-    {
-      id: Math.floor(Math.random() * 10000),
-      categoryName: "Trabalho",
-    },
-    {
-      id: Math.floor(Math.random() * 10000),
-      categoryName: "Esporte",
-    },
-  ]);
+  
 
   // function addCategory(categoryName) {
   //   const newCategories = [
