@@ -31,6 +31,7 @@ function App() {
 
   const modalFormButton = useRef(null);
   const modalRemoveNotButton = useRef(null);
+  const modalEditTextarea = useRef(null);
 
   function addTodo(text, category) {
     const newTodos = [
@@ -63,7 +64,9 @@ function App() {
     if (modalRemove) modalRemoveNotButton.current.focus();
 
     if (modalForm) modalFormButton.current.focus();
-  }, [modalForm, modalRemove]);
+
+    if (modalEdit) modalEditTextarea.current.focus();
+  }, [modalForm, modalRemove, modalEdit]);
 
   function deleteTodo(id) {
     const newTodos = [...todos];
@@ -159,7 +162,14 @@ function App() {
       return (
         <>
           <Fade />
-          <ModalEdit setFade={setFade} setModalEdit={setModalEdit} todoEditId={todoEditId} todos={todos} setTodos={setTodos}/>
+          <ModalEdit
+            setFade={setFade}
+            setModalEdit={setModalEdit}
+            todoEditId={todoEditId}
+            todos={todos}
+            setTodos={setTodos}
+            modalEditTextarea={modalEditTextarea}
+          />
         </>
       );
     } else return <></>;

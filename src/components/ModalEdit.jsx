@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function ModalEdit({ setFade, setModalEdit, todoEditId, todos, setTodos }) {
+function ModalEdit({ setFade, setModalEdit, todoEditId, todos, setTodos, modalEditTextarea}) {
   const [todoToEditText, setTodoToEditText] = useState("");
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function ModalEdit({ setFade, setModalEdit, todoEditId, todos, setTodos }) {
         id="input_edicao"
         defaultValue={todoToEditText}
         rows={"5"}
-        onChange={(e) => mudarTexto(e)}
+        ref={modalEditTextarea} onChange={(e) => mudarTexto(e)}
       ></textarea>
 
       <div className="modal_edit__buttons">
