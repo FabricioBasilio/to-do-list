@@ -16,6 +16,7 @@ function TodoContainer({
   setCheckboxModalRemove,
   checarTarefas,
   addTodo,
+  setModalCategory
 }) {
   return (
     <div className="app">
@@ -36,6 +37,7 @@ function TodoContainer({
         addTodo={addTodo}
         setFade={setFade}
         setModalForm={setModalForm}
+        setModalCategory={setModalCategory}
       />
     </div>
   );

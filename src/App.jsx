@@ -6,6 +6,7 @@ import ModalForm from "./components/ModalForm";
 import TodoContainer from "./components/TodoContainer";
 import ModalRemove from "./components/ModalRemove";
 import ModalEdit from "./components/ModalEdit";
+import ModalCategory from "./components/ModalCategory";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -24,6 +25,7 @@ function App() {
   const [modalForm, setModalForm] = useState(false);
   const [modalRemove, setModalRemove] = useState(false);
   const [modalEdit, setModalEdit] = useState(false);
+  const [modalCategory, setModalCategory] = useState(false);
   const [userRemoveAnswer, setUserRemoveAnswer] = useState(false);
   const [todoRemoveId, setTodoRemoveId] = useState("");
   const [todoEditId, setTodoEditId] = useState("");
@@ -32,6 +34,7 @@ function App() {
   const modalFormButton = useRef(null);
   const modalRemoveNotButton = useRef(null);
   const modalEditTextarea = useRef(null);
+  const modalCategoryInput = useRef(null);
 
   function addTodo(text, category) {
     const newTodos = [
@@ -66,7 +69,9 @@ function App() {
     if (modalForm) modalFormButton.current.focus();
 
     if (modalEdit) modalEditTextarea.current.focus();
-  }, [modalForm, modalRemove, modalEdit]);
+
+    if (modalCategory) modalCategoryInput.current.focus();
+  }, [modalForm, modalRemove, modalEdit, modalCategory]);
 
   function deleteTodo(id) {
     const newTodos = [...todos];
@@ -175,6 +180,21 @@ function App() {
     } else return <></>;
   }
 
+  function mostrarModalCategory() {
+    if (fade && modalCategory) {
+      return (
+        <>
+          <Fade />
+          <ModalCategory
+            setFade={setFade}
+            setModalCategory={setModalCategory}
+            modalCategoryInput={modalCategoryInput}
+          />
+        </>
+      );
+    } else return <></>;
+  }
+
   function checarTarefas() {
     return todos.length === 0 ? (
       <p className="todo_list__feedback">
@@ -204,10 +224,12 @@ function App() {
         setCheckboxModalRemove={setCheckboxModalRemove}
         checarTarefas={checarTarefas}
         addTodo={addTodo}
+        setModalCategory={setModalCategory}
       />
       {mostrarModalForm()}
       {mostrarModalRemove()}
       {mostrarModalEdit()}
+      {mostrarModalCategory()}
     </main>
   );
 }

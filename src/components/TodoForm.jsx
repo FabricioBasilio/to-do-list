@@ -1,25 +1,25 @@
 import { useState } from "react";
 import Options from "./Options";
 
-function TodoForm({ addTodo, setFade, setModalForm }) {
+function TodoForm({ addTodo, setFade, setModalForm, setModalCategory}) {
   const [value, setValue] = useState("");
   const [category, setCategory] = useState("");
 
   const [categories, setCategories] = useState([
     {
-      id: Math.floor(Math.random() * 100),
+      id: Math.floor(Math.random() * 10000),
       categoryName: "Pessoal",
     },
     {
-      id: Math.floor(Math.random() * 100),
+      id: Math.floor(Math.random() * 10000),
       categoryName: "Estudos",
     },
     {
-      id: Math.floor(Math.random() * 100),
+      id: Math.floor(Math.random() * 10000),
       categoryName: "Trabalho",
     },
     {
-      id: Math.floor(Math.random() * 100),
+      id: Math.floor(Math.random() * 10000),
       categoryName: "Esporte",
     },
   ]);
@@ -37,6 +37,11 @@ function TodoForm({ addTodo, setFade, setModalForm }) {
   // }
 
   // addCategory("")
+
+  function abrirModalCategory() {
+    setFade(true)
+    setModalCategory(true)
+  }
 
   function handleFormSubmit(e) {
     e.preventDefault();
@@ -76,6 +81,7 @@ function TodoForm({ addTodo, setFade, setModalForm }) {
         >
           <Options categories={categories} />
         </select>
+        <button type="button" onClick={abrirModalCategory}>Adicionar categoria</button>
         <button type="submit">Criar tarefa</button>
       </form>
     </section>
