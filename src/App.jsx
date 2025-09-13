@@ -26,6 +26,7 @@ function App() {
   const [modalEdit, setModalEdit] = useState(false);
   const [userRemoveAnswer, setUserRemoveAnswer] = useState(false);
   const [todoRemoveId, setTodoRemoveId] = useState("");
+  const [todoEditId, setTodoEditId] = useState("");
   const [checkboxModalRemove, setCheckboxModalRemove] = useState(false);
 
   const modalFormButton = useRef(null);
@@ -89,7 +90,7 @@ function App() {
   function editTodo(id) {
     setFade(true);
     setModalEdit(true);
-    console.log("editar todo do id: " + id);
+    setTodoEditId(id);
   }
 
   function filtrarTarefas(todo) {
@@ -158,7 +159,7 @@ function App() {
       return (
         <>
           <Fade />
-          <ModalEdit setFade={setFade} setModalEdit={setModalEdit} />
+          <ModalEdit setFade={setFade} setModalEdit={setModalEdit} todoEditId={todoEditId} todos={todos} setTodos={setTodos}/>
         </>
       );
     } else return <></>;
