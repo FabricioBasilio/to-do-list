@@ -246,6 +246,7 @@ select {
 .todo_list__todo p {
   line-height: 1.5rem;
   letter-spacing: 0.05rem;
+  word-break: break-all;
 }
 
 .todo_list__todo p:last-child {
