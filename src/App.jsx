@@ -1,29 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles/App.css";
 import Todo from "./components/Todo";
 import Fade from "./components/Fade";
 import ModalForm from "./components/ModalForm";
 import TodoContainer from "./components/TodoContainer";
 import ModalRemove from "./components/ModalRemove";
+import ModalEdit from "./components/ModalEdit";
 
 function App() {
   const [todos, setTodos] = useState([
     {
-      id: 1,
-      text: "Fazer projeto todo list",
-      category: "Trabalho",
-      isDone: false,
-    },
-    {
-      id: 2,
-      text: "Fazer projeto com react",
-      category: "Trabalho",
-      isDone: false,
-    },
-    {
-      id: 3,
-      text: "Ir à academia",
-      category: "Pessoal",
+      id: Math.floor(Math.random() * 10000),
+      text: "melhorar projeto",
+      category: "eu sei la",
       isDone: false,
     },
   ]);
@@ -34,9 +23,15 @@ function App() {
   const [fade, setFade] = useState(false);
   const [modalForm, setModalForm] = useState(false);
   const [modalRemove, setModalRemove] = useState(false);
+  const [modalEdit, setModalEdit] = useState(false);
   const [userRemoveAnswer, setUserRemoveAnswer] = useState(false);
-  //id da tarefa a deletar
   const [todoRemoveId, setTodoRemoveId] = useState("");
+  const [todoEditId, setTodoEditId] = useState("");
+  const [checkboxModalRemove, setCheckboxModalRemove] = useState(false);
+
+  const modalFormButton = useRef(null);
+  const modalRemoveNotButton = useRef(null);
+  const modalEditTextarea = useRef(null);
 
   function addTodo(text, category) {
     const newTodos = [
@@ -53,30 +48,27 @@ function App() {
   }
 
   function removeTodo(id) {
-    // o id está correto
-    
-    // não dá update imediato valor certo
-    // use effect depois
-
     setTodoRemoveId(id);
 
-    setFade(true);
-    setModalRemove(true);
-
-
+    if (checkboxModalRemove === true) {
+      setFade(true);
+      setModalRemove(true);
+    } else deleteTodo(id);
   }
 
   useEffect(() => {
-
     if (userRemoveAnswer) deleteTodo(todoRemoveId);
-    
-    // deleteTodo no array de dependencias ou não, fica esse problema que não interrompe nada no código
-  }, [userRemoveAnswer, todoRemoveId])
+  }, [userRemoveAnswer, todoRemoveId]);
 
+  useEffect(() => {
+    if (modalRemove) modalRemoveNotButton.current.focus();
+
+    if (modalForm) modalFormButton.current.focus();
+
+    if (modalEdit) modalEditTextarea.current.focus();
+  }, [modalForm, modalRemove, modalEdit]);
 
   function deleteTodo(id) {
-    
-
     const newTodos = [...todos];
     const filteredTodos = newTodos.filter((todo) =>
       todo.id !== id ? todo : null
@@ -84,11 +76,9 @@ function App() {
 
     setTodos(filteredTodos);
 
-    
-
     setUserRemoveAnswer(false);
 
-    setTodoRemoveId("")
+    setTodoRemoveId("");
   }
 
   function completeTodo(id) {
@@ -98,6 +88,12 @@ function App() {
     );
 
     setTodos(newTodos);
+  }
+
+  function editTodo(id) {
+    setFade(true);
+    setModalEdit(true);
+    setTodoEditId(id);
   }
 
   function filtrarTarefas(todo) {
@@ -124,6 +120,7 @@ function App() {
         key={todo.id}
         todo={todo}
         completeTodo={completeTodo}
+        editTodo={editTodo}
         removeTodo={removeTodo}
       />
     );
@@ -134,7 +131,11 @@ function App() {
       return (
         <>
           <Fade />
-          <ModalForm setFade={setFade} setModalForm={setModalForm} />
+          <ModalForm
+            setFade={setFade}
+            setModalForm={setModalForm}
+            modalFormButton={modalFormButton}
+          />
         </>
       );
     } else return <></>;
@@ -148,10 +149,26 @@ function App() {
           <ModalRemove
             setFade={setFade}
             setModalRemove={setModalRemove}
-            userRemoveAnswer={userRemoveAnswer}
             setUserRemoveAnswer={setUserRemoveAnswer}
-            todoRemoveId={todoRemoveId}
-            deleteTodo={deleteTodo}
+            modalRemoveNotButton={modalRemoveNotButton}
+          />
+        </>
+      );
+    } else return <></>;
+  }
+
+  function mostrarModalEdit() {
+    if (fade && modalEdit) {
+      return (
+        <>
+          <Fade />
+          <ModalEdit
+            setFade={setFade}
+            setModalEdit={setModalEdit}
+            todoEditId={todoEditId}
+            todos={todos}
+            setTodos={setTodos}
+            modalEditTextarea={modalEditTextarea}
           />
         </>
       );
@@ -159,7 +176,6 @@ function App() {
   }
 
   function checarTarefas() {
-    // Quando há 0 tarefas
     return todos.length === 0 ? (
       <p className="todo_list__feedback">
         Nenhuma tarefa aqui, tenha um bom dia :D
@@ -184,11 +200,14 @@ function App() {
         setSearch={setSearch}
         setFade={setFade}
         setModalForm={setModalForm}
+        checkboxModalRemove={checkboxModalRemove}
+        setCheckboxModalRemove={setCheckboxModalRemove}
         checarTarefas={checarTarefas}
         addTodo={addTodo}
       />
       {mostrarModalForm()}
       {mostrarModalRemove()}
+      {mostrarModalEdit()}
     </main>
   );
 }
