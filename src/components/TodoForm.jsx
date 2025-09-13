@@ -1,29 +1,22 @@
 import { useState } from "react";
 import Options from "./Options";
+import CharacterCounter from "./CharacterCounter";
 
-function TodoForm({ addTodo, setFade, setModalForm, setModalCategory, categories}) {
+function TodoForm({
+  addTodo,
+  setFade,
+  setModalForm,
+  setModalCategory,
+  categories,
+}) {
+  const charactersLimit = 100;
+
   const [value, setValue] = useState("");
   const [category, setCategory] = useState("");
 
-  
-
-  // function addCategory(categoryName) {
-  //   const newCategories = [
-  //     ...categories,
-  //     {
-  //       id: Math.floor(Math.random() * 100),
-  //       categoryName: categoryName,
-  //     },
-  //   ];
-
-  //   setCategories(newCategories);
-  // }
-
-  // addCategory("")
-
   function abrirModalCategory() {
-    setFade(true)
-    setModalCategory(true)
+    setFade(true);
+    setModalCategory(true);
   }
 
   function handleFormSubmit(e) {
@@ -34,7 +27,7 @@ function TodoForm({ addTodo, setFade, setModalForm, setModalCategory, categories
       return;
     }
 
-    addTodo(value, category);
+    addTodo(value.trim(), category);
 
     resetInputs();
   }
@@ -51,11 +44,13 @@ function TodoForm({ addTodo, setFade, setModalForm, setModalCategory, categories
         <label htmlFor="texto_adicionar_tarefa">O que fazer:</label>
         <input
           type="text"
+          maxLength={charactersLimit}
           placeholder="Digite a tarefa..."
           value={value}
           id="texto_adicionar_tarefa"
           onChange={(e) => setValue(e.target.value)}
         />
+        <CharacterCounter valueLength={value.length} limit={charactersLimit} />
         <label htmlFor="categoria_adicionar_tarefa">Categoria:</label>
         <select
           value={category}
@@ -64,8 +59,10 @@ function TodoForm({ addTodo, setFade, setModalForm, setModalCategory, categories
         >
           <Options categories={categories} />
         </select>
-        <button type="button" onClick={abrirModalCategory}>Adicionar categoria</button>
-        <button type="submit">Criar tarefa</button>
+        <button type="button" onClick={abrirModalCategory}>
+          Adicionar categoria
+        </button>
+        <button type="submit" disabled={!value.trim() || !category}>Criar tarefa</button>
       </form>
     </section>
   );

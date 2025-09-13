@@ -23,6 +23,11 @@ function ModalCategory({
   }
 
   function adicionarCategoria() {
+
+    if (!newCategoryName.trim()) {
+      return;
+    }
+
     const newCategories = [
       ...categories,
       {
@@ -54,7 +59,7 @@ function ModalCategory({
       <CharacterCounter valueLength={newCategoryName.length} limit={charactersLimit}/>
       <div className="modal_category__buttons">
         <button onClick={descartarCategoria}>Descartar</button>
-        <button onClick={adicionarCategoria}>Adicionar</button>
+        <button disabled={!newCategoryName.trim()} onClick={adicionarCategoria}>Adicionar</button>
       </div>
     </div>
   );

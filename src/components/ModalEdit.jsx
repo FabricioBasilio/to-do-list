@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import CharacterCounter from "./CharacterCounter";
 
 function ModalEdit({ setFade, setModalEdit, todoEditId, todos, setTodos, modalEditTextarea}) {
+
+  const charactersLimit = 100;
+
   const [todoToEditText, setTodoToEditText] = useState("");
 
   useEffect(() => {
@@ -17,13 +21,20 @@ function ModalEdit({ setFade, setModalEdit, todoEditId, todos, setTodos, modalEd
   }
 
   function reescreverEdicao() {
+
+    if (!todoToEditText.trim()) {
+      
+      return;
+    }
+
+
     const newTodos = [...todos];
 
     const newTodosUpdated = newTodos.map((todo) => {
       if (todo.id === todoEditId) {
         return {
           ...todo,
-          text: todoToEditText,
+          text: todoToEditText.trim(),
         };
       } else return todo;
     });
@@ -38,7 +49,7 @@ function ModalEdit({ setFade, setModalEdit, todoEditId, todos, setTodos, modalEd
   }
 
   function mudarTexto(e) {
-    setTodoToEditText(e.target.value.trim());
+    setTodoToEditText(e.target.value);
   }
 
   return (
@@ -49,13 +60,14 @@ function ModalEdit({ setFade, setModalEdit, todoEditId, todos, setTodos, modalEd
       <textarea
         id="input_edicao"
         defaultValue={todoToEditText}
+        maxLength={charactersLimit}
         rows={"5"}
         ref={modalEditTextarea} onChange={(e) => mudarTexto(e)}
       ></textarea>
-
+      <CharacterCounter valueLength={todoToEditText.length} limit={charactersLimit}/>
       <div className="modal_edit__buttons">
         <button onClick={descartarEdicao}>Descartar</button>
-        <button onClick={reescreverEdicao}>Reescrever</button>
+        <button disabled={!todoToEditText.trim()} onClick={reescreverEdicao}>Reescrever</button>
       </div>
     </div>
   );

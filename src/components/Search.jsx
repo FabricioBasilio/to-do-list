@@ -1,4 +1,6 @@
 function Search({ search, setSearch }) {
+  const charactersLimit = 25;
+
   function cleanSearch() {
     setSearch("");
   }
@@ -10,6 +12,7 @@ function Search({ search, setSearch }) {
         <input
           type="text"
           placeholder="Digite para pesquisar..."
+          maxLength={charactersLimit}
           value={search}
           id="input_pesquisar"
           className="search__container__input"

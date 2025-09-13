@@ -70,6 +70,10 @@ button:focus {
   opacity: 1;
 }
 
+button:disabled {
+  opacity: 0.4;
+}
+
 button:focus,
 select:focus,
 input:focus,
@@ -401,6 +405,10 @@ select {
   display: flex;
   justify-content: flex-end;
   color: var(--cor5);
+}
+
+.character_counter p {
+  margin-bottom: 0.3rem;
 }
 
 @media screen and (min-width: 700px) {
