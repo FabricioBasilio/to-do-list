@@ -1,6 +1,15 @@
+import { useEffect, useState } from "react";
+
 function ModalCategory({ setFade, setModalCategory, modalCategoryInput }) {
+  const [newCategoryName, setNewCategoryName] = useState("");
+
+  useEffect(() => {
+    console.log(newCategoryName);
+    
+  }, [newCategoryName])
+
   function descartarCategoria() {
-    // setTodoToEditText(""); state do input
+    setNewCategoryName("");
     setFade(false);
     setModalCategory(false);
   }
@@ -8,6 +17,11 @@ function ModalCategory({ setFade, setModalCategory, modalCategoryInput }) {
   function adicionarCategoria() {
     setFade(false);
     setModalCategory(false);
+  }
+
+  function mudarTexto(e) {
+    setNewCategoryName(e.target.value.trim());
+    
   }
 
   return (
@@ -18,6 +32,7 @@ function ModalCategory({ setFade, setModalCategory, modalCategoryInput }) {
         type="text"
         maxLength={20}
         ref={modalCategoryInput}
+        onChange={(e) => mudarTexto(e)}
       />
       <div className="modal_category__buttons">
         <button onClick={descartarCategoria}>Descartar</button>
