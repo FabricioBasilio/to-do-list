@@ -380,6 +380,11 @@ select {
   margin-bottom: 0.2rem;
 }
 
+.modal_edit label p {
+  font-size: 1.5rem;
+  
+}
+
 .modal_edit textarea {
   resize: none;
   width: 100%;

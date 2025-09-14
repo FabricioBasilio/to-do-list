@@ -192,6 +192,7 @@ function App() {
             todoEditId={todoEditId}
             todos={todos}
             setTodos={setTodos}
+            categories={categories}
             modalEditTextarea={modalEditTextarea}
           />
         </>

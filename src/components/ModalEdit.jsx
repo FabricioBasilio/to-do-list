@@ -1,32 +1,40 @@
 import { useEffect, useState } from "react";
 import CharacterCounter from "./CharacterCounter";
+import Options from "./Options";
 
-function ModalEdit({ setFade, setModalEdit, todoEditId, todos, setTodos, modalEditTextarea}) {
-
+function ModalEdit({
+  setFade,
+  setModalEdit,
+  todoEditId,
+  todos,
+  setTodos,
+  categories,
+  modalEditTextarea,
+}) {
   const charactersLimit = 100;
 
   const [todoToEditText, setTodoToEditText] = useState("");
+  const [todoToEditCategory, setTodoToEditCategory] = useState("");
 
   useEffect(() => {
     const newTodos = [...todos];
     const [todoToEdit] = newTodos.filter((todo) => todo.id === todoEditId);
     setTodoToEditText(todoToEdit.text);
+    setTodoToEditCategory(todoToEdit.category)
     console.log(todoToEdit);
   }, [todos, todoEditId]);
 
   function descartarEdicao() {
     setTodoToEditText("");
+    setTodoToEditCategory("")
     setFade(false);
     setModalEdit(false);
   }
 
   function reescreverEdicao() {
-
     if (!todoToEditText.trim()) {
-      
       return;
     }
-
 
     const newTodos = [...todos];
 
@@ -35,6 +43,7 @@ function ModalEdit({ setFade, setModalEdit, todoEditId, todos, setTodos, modalEd
         return {
           ...todo,
           text: todoToEditText.trim(),
+          category: todoToEditCategory,
         };
       } else return todo;
     });
@@ -62,12 +71,25 @@ function ModalEdit({ setFade, setModalEdit, todoEditId, todos, setTodos, modalEd
         defaultValue={todoToEditText}
         maxLength={charactersLimit}
         rows={"5"}
-        ref={modalEditTextarea} onChange={(e) => mudarTexto(e)}
+        ref={modalEditTextarea}
+        onChange={(e) => mudarTexto(e)}
       ></textarea>
-      <CharacterCounter valueLength={todoToEditText.length} limit={charactersLimit}/>
+      <CharacterCounter
+        valueLength={todoToEditText.length}
+        limit={charactersLimit}
+      />
+      <select
+        value={todoToEditCategory}
+        id="categoria_editar_tarefa"
+        onChange={(e) => setTodoToEditCategory(e.target.value)}
+      >
+        <Options categories={categories} />
+      </select>
       <div className="modal_edit__buttons">
         <button onClick={descartarEdicao}>Descartar</button>
-        <button disabled={!todoToEditText.trim()} onClick={reescreverEdicao}>Reescrever</button>
+        <button disabled={!todoToEditText.trim()} onClick={reescreverEdicao}>
+          Reescrever
+        </button>
       </div>
     </div>
   );
