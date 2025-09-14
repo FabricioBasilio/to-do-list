@@ -32,7 +32,7 @@ function ModalEdit({
   }
 
   function reescreverEdicao() {
-    if (!todoToEditText.trim()) {
+    if (!todoToEditText.trim() || !todoToEditCategory) {
       return;
     }
 
@@ -87,7 +87,7 @@ function ModalEdit({
       </select>
       <div className="modal_edit__buttons">
         <button onClick={descartarEdicao}>Descartar</button>
-        <button disabled={!todoToEditText.trim()} onClick={reescreverEdicao}>
+        <button disabled={!todoToEditText.trim() || !todoToEditCategory} onClick={reescreverEdicao}>
           Reescrever
         </button>
       </div>
