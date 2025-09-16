@@ -29,7 +29,7 @@ function ModalCategory({
   }
 
   function adicionarCategoria() {
-    if (!newCategoryName.trim()) {
+    if (!newCategoryName.trim() || hasCategory()) {
       return;
     }
 
@@ -45,6 +45,21 @@ function ModalCategory({
 
     setFade(false);
     setModalCategory(false);
+  }
+
+  function hasCategory() {
+    const categoryNameToFind = newCategoryName.trim();
+    const categoriesLength = categories.length;
+    let categoryExists = false;
+    let i;
+    for (i = 0; i < categoriesLength; i++) {
+      if (categories[i].categoryName === categoryNameToFind) {
+        categoryExists = true;
+        break;
+      }
+    }
+
+    return categoryExists ? categoryExists : false;
   }
 
   function mudarTexto(e) {
@@ -70,7 +85,7 @@ function ModalCategory({
           <button type="button" onClick={descartarCategoria}>
             Descartar
           </button>
-          <button type="submit" disabled={!newCategoryName.trim()}>
+          <button type="submit" disabled={!newCategoryName.trim() || hasCategory()}>
             Adicionar
           </button>
         </div>
