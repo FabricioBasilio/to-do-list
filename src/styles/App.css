@@ -395,9 +395,9 @@ select {
   gap: 2rem;
 }
 
-.modal_category {
-  display: flex;
-  flex-direction: column;
+.modal_category form {
+  width: 100%;
+  align-items: center;
   gap: 0.5rem;
 }
 

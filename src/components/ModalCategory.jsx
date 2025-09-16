@@ -16,6 +16,12 @@ function ModalCategory({
     console.log(newCategoryName);
   }, [newCategoryName]);
 
+  function handleFormSubmit(e) {
+    e.preventDefault();
+
+    adicionarCategoria();
+  }
+
   function descartarCategoria() {
     setNewCategoryName("");
     setFade(false);
@@ -23,7 +29,6 @@ function ModalCategory({
   }
 
   function adicionarCategoria() {
-
     if (!newCategoryName.trim()) {
       return;
     }
@@ -48,19 +53,28 @@ function ModalCategory({
 
   return (
     <div className="modal_details modal_category">
-      <label htmlFor="nova_categoria_texto">Adicionar categoria</label>
-      <input
-        id="nova_categoria_texto"
-        type="text"
-        maxLength={charactersLimit}
-        ref={modalCategoryInput}
-        onChange={(e) => mudarTexto(e)}
-      />
-      <CharacterCounter valueLength={newCategoryName.length} limit={charactersLimit}/>
-      <div className="modal_category__buttons">
-        <button onClick={descartarCategoria}>Descartar</button>
-        <button disabled={!newCategoryName.trim()} onClick={adicionarCategoria}>Adicionar</button>
-      </div>
+      <form onClick={handleFormSubmit}>
+        <label htmlFor="nova_categoria_texto">Adicionar categoria</label>
+        <input
+          id="nova_categoria_texto"
+          type="text"
+          maxLength={charactersLimit}
+          ref={modalCategoryInput}
+          onChange={(e) => mudarTexto(e)}
+        />
+        <CharacterCounter
+          valueLength={newCategoryName.length}
+          limit={charactersLimit}
+        />
+        <div className="modal_category__buttons">
+          <button type="button" onClick={descartarCategoria}>
+            Descartar
+          </button>
+          <button type="submit" disabled={!newCategoryName.trim()}>
+            Adicionar
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
