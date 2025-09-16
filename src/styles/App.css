@@ -13,7 +13,7 @@
   --cor4: #db0808;
   --cor5: #555555;
   --cor6: #0000001a;
-  --cor7: #e9ebe8e8;
+  --cor7: #e9ebe8;
   --cor8: #1b2845;
 
   --corOutline: var(--cor8);
@@ -30,7 +30,6 @@
   max-width: 750px;
   margin: 30px auto 30px auto;
   background-color: var(--cor7);
-  backdrop-filter: blur(5px);
   padding: 15px 20px;
   border-radius: var(--radiusPadrao);
 }
