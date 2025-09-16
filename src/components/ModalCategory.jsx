@@ -30,7 +30,7 @@ function ModalCategory({
   }
 
   function adicionarCategoria() {
-    if (!newCategoryName.trim() || hasCategory()) {
+    if (isEmpty() || hasCategory()) {
       return;
     }
 
@@ -67,27 +67,32 @@ function ModalCategory({
     setNewCategoryName(e.target.value);
   }
 
+  function isEmpty() {
+    return !newCategoryName.trim()
+  }
+
   return (
     <div className="modal_details modal_category">
       <form onClick={handleFormSubmit}>
         <label htmlFor="nova_categoria_texto">Adicionar categoria</label>
         <input
           id="nova_categoria_texto"
+          className={(isEmpty() || hasCategory()) ? "modal_category__category_name--feedback" : ""}
           type="text"
           maxLength={charactersLimit}
           ref={modalCategoryInput}
           onChange={(e) => mudarTexto(e)}
         />
-        <FeedbackModalCategory isEmpty={!newCategoryName.trim()} hasCategory={hasCategory}/>
         <CharacterCounter
           valueLength={newCategoryName.length}
           limit={charactersLimit}
         />
+        <FeedbackModalCategory isEmpty={isEmpty} hasCategory={hasCategory}/>
         <div className="modal_category__buttons">
           <button type="button" onClick={descartarCategoria}>
             Descartar
           </button>
-          <button type="submit" disabled={!newCategoryName.trim() || hasCategory()}>
+          <button type="submit" disabled={isEmpty() || hasCategory()}>
             Adicionar
           </button>
         </div>

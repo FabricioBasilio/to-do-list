@@ -400,12 +400,15 @@ select {
   gap: 0.5rem;
 }
 
+.modal_category .modal_category__category_name--feedback {
+  outline-color: var(--cor4);
+}
+
 .modal_category .modal_category__feedback {
   align-self: stretch;
   display: flex;
   justify-content: flex-start;
   color: var(--cor4);
-  height: 1.4rem;
 }
 
 .modal_category .modal_category__feedback p {
