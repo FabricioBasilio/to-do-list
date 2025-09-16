@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CharacterCounter from "./CharacterCounter";
+import FeedbackModalCategory from "./FeedbackModalCategory";
 
 function ModalCategory({
   setFade,
@@ -77,6 +78,7 @@ function ModalCategory({
           ref={modalCategoryInput}
           onChange={(e) => mudarTexto(e)}
         />
+        <FeedbackModalCategory isEmpty={!newCategoryName.trim()} hasCategory={hasCategory}/>
         <CharacterCounter
           valueLength={newCategoryName.length}
           limit={charactersLimit}

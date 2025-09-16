@@ -382,7 +382,6 @@ select {
 
 .modal_edit label p {
   font-size: 1.5rem;
-  
 }
 
 .modal_edit textarea {
@@ -399,6 +398,19 @@ select {
   width: 100%;
   align-items: center;
   gap: 0.5rem;
+}
+
+.modal_category .modal_category__feedback {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+  color: var(--cor4);
+  height: 1.4rem;
+}
+
+.modal_category .modal_category__feedback p {
+  font-size: 0.9rem;
+  margin-left: 0.3rem;
 }
 
 .modal_category .modal_category__buttons {
