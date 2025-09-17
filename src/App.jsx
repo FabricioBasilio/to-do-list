@@ -130,7 +130,11 @@ function App() {
   }
 
   function filtrarCategoria(todo) {
-    return (filterCategory === todo.category || filterCategory === "") ? true : false;
+    if (filterCategory === todo.category) {
+      return true;
+    } else if (filterCategory === "") {
+      return true;
+    }
   }
 
   function pesquisarTarefas(todo) {
