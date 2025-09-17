@@ -73,7 +73,7 @@ function ModalCategory({
 
   return (
     <div className="modal_details modal_category">
-      <form onClick={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit}>
         <label htmlFor="nova_categoria_texto">Adicionar categoria</label>
         <input
           id="nova_categoria_texto"
