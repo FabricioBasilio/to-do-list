@@ -13,7 +13,7 @@ function App() {
     {
       id: Math.floor(Math.random() * 10000),
       text: "melhorar projeto",
-      category: "eu sei la",
+      category: "Trabalho",
       isDone: false,
     },
   ]);
@@ -129,6 +129,10 @@ function App() {
       : !todo.isDone;
   }
 
+  function filtrarCategoria(todo) {
+    return (filterCategory === todo.category || filterCategory === "") ? true : false;
+  }
+
   function pesquisarTarefas(todo) {
     return todo.text.toLowerCase().includes(search.toLowerCase());
   }
@@ -225,6 +229,7 @@ function App() {
       </p>
     ) : (
       todos
+        .filter(filtrarCategoria)
         .filter(filtrarTarefas)
         .filter(pesquisarTarefas)
         .sort(ordenarAlfabeticamente)
