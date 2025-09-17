@@ -26,9 +26,6 @@ function ModalCategory({
 
   const [newCategoryName, setNewCategoryName] = useState("");
 
-  useEffect(() => {
-    console.log(newCategoryName);
-  }, [newCategoryName]);
 
   function handleFormSubmit(e) {
     e.preventDefault();

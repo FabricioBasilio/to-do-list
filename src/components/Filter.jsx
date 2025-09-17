@@ -7,7 +7,6 @@ function Filter({
   setSort,
   categories
 }) {
-  console.log("categoria a filtrar: " + Boolean(filterCategory));
   
   return (
     <section className="filter">

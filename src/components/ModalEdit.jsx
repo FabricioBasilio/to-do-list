@@ -33,7 +33,6 @@ function ModalEdit({
     const [todoToEdit] = newTodos.filter((todo) => todo.id === todoEditId);
     setTodoToEditText(todoToEdit.text);
     setTodoToEditCategory(todoToEdit.category);
-    console.log(todoToEdit);
   }, [todos, todoEditId]);
 
   function descartarEdicao() {
@@ -60,8 +59,6 @@ function ModalEdit({
       } else return todo;
     });
 
-    console.log(newTodosUpdated);
-    console.log(todoToEditText);
 
     setTodos(newTodosUpdated);
 

@@ -1,5 +1,4 @@
 function Options({ categories }) {
-  console.log(categories);
 
   return (
     <>
