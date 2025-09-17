@@ -1,4 +1,14 @@
-function Filter({ filter, setFilter, sort, setSort }) {
+function Filter({
+  filter,
+  setFilter,
+  filterCategory,
+  setFilterCategory,
+  sort,
+  setSort,
+  categories
+}) {
+  console.log("categoria a filtrar: " + Boolean(filterCategory));
+  
   return (
     <section className="filter">
       <label htmlFor="select_filter">Filtrar</label>
@@ -13,6 +23,21 @@ function Filter({ filter, setFilter, sort, setSort }) {
             <option value="All">Todas</option>
             <option value="Done">Feitas</option>
             <option value="Incomplete">Incompletas</option>
+          </select>
+        </div>
+        <div className="filter_options__filter">
+          <p>Categoria: </p>
+          <select
+            value={filterCategory}
+            id="select_filter_category"
+            onChange={(e) => setFilterCategory(e.target.value)}
+          >
+            <option value="">Todas</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.categoryName}>
+                {category.categoryName}
+              </option>
+            ))}
           </select>
         </div>
         <div className="filter_options__alphabetic">

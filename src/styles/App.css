@@ -196,6 +196,7 @@ select {
   border-radius: 0 var(--radiusPadrao) var(--radiusPadrao) 0;
 }
 
+
 .filter_options {
   display: flex;
   flex-direction: column;

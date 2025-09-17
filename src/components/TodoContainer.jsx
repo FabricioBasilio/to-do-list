@@ -6,6 +6,8 @@ import CheckboxModalRemove from "./CheckboxModalRemove";
 function TodoContainer({
   filter,
   setFilter,
+  filterCategory,
+  setFilterCategory,
   sort,
   setSort,
   search,
@@ -17,7 +19,7 @@ function TodoContainer({
   checarTarefas,
   addTodo,
   setModalCategory,
-  categories
+  categories,
 }) {
   return (
     <div className="app">
@@ -25,8 +27,11 @@ function TodoContainer({
       <Filter
         filter={filter}
         setFilter={setFilter}
+        filterCategory={filterCategory}
+        setFilterCategory={setFilterCategory}
         sort={sort}
         setSort={setSort}
+        categories={categories}
       />
       <CheckboxModalRemove
         checkboxModalRemove={checkboxModalRemove}

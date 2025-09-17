@@ -39,6 +39,7 @@ function App() {
 
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
+  const [filterCategory, setFilterCategory] = useState("");
   const [sort, setSort] = useState("Asc");
   const [fade, setFade] = useState(false);
   const [modalForm, setModalForm] = useState(false);
@@ -236,6 +237,8 @@ function App() {
       <TodoContainer
         filter={filter}
         setFilter={setFilter}
+        filterCategory={filterCategory}
+        setFilterCategory={setFilterCategory}
         sort={sort}
         setSort={setSort}
         search={search}
