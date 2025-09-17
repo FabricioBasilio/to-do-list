@@ -11,10 +11,10 @@ function Filter({
   
   return (
     <section className="filter">
-      <label htmlFor="select_filter">Filtrar</label>
+      <h2>Filtrar</h2>
       <div className="filter_options">
         <div className="filter_options__filter">
-          <p>Status: </p>
+          <label htmlFor="select_filter">Status: </label>
           <select
             value={filter}
             id="select_filter"
@@ -26,7 +26,7 @@ function Filter({
           </select>
         </div>
         <div className="filter_options__filter">
-          <p>Categoria: </p>
+          <label htmlFor="select_filter_category">Categoria: </label>
           <select
             value={filterCategory}
             id="select_filter_category"
