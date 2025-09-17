@@ -9,6 +9,18 @@ function TodoForm({
   setModalCategory,
   categories,
 }) {
+  const todoSuggestions = [
+    "Limpar a casa...",
+    "Aprender um idioma...",
+    "Aprender a desenhar...",
+    "Passear no parque...",
+    "Ir à academia...",
+    "Cozinhar uma receita...",
+  ];
+
+  const todoSuggestion =
+    todoSuggestions[Math.floor(Math.random() * todoSuggestions.length)];
+
   const charactersLimit = 100;
 
   const [value, setValue] = useState("");
@@ -45,7 +57,7 @@ function TodoForm({
         <input
           type="text"
           maxLength={charactersLimit}
-          placeholder="Digite a tarefa..."
+          placeholder={todoSuggestion}
           value={value}
           id="texto_adicionar_tarefa"
           onChange={(e) => setValue(e.target.value)}
@@ -62,7 +74,9 @@ function TodoForm({
         <button type="button" onClick={abrirModalCategory}>
           Adicionar categoria
         </button>
-        <button type="submit" disabled={!value.trim() || !category}>Criar tarefa</button>
+        <button type="submit" disabled={!value.trim() || !category}>
+          Criar tarefa
+        </button>
       </form>
     </section>
   );

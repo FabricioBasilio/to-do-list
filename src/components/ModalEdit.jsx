@@ -11,6 +11,18 @@ function ModalEdit({
   categories,
   modalEditTextarea,
 }) {
+  const todoSuggestions = [
+    "Limpar a casa...",
+    "Aprender um idioma...",
+    "Aprender a desenhar...",
+    "Passear no parque...",
+    "Ir à academia...",
+    "Cozinhar uma receita...",
+  ];
+
+  const todoSuggestion =
+    todoSuggestions[Math.floor(Math.random() * todoSuggestions.length)];
+
   const charactersLimit = 100;
 
   const [todoToEditText, setTodoToEditText] = useState("");
@@ -20,13 +32,13 @@ function ModalEdit({
     const newTodos = [...todos];
     const [todoToEdit] = newTodos.filter((todo) => todo.id === todoEditId);
     setTodoToEditText(todoToEdit.text);
-    setTodoToEditCategory(todoToEdit.category)
+    setTodoToEditCategory(todoToEdit.category);
     console.log(todoToEdit);
   }, [todos, todoEditId]);
 
   function descartarEdicao() {
     setTodoToEditText("");
-    setTodoToEditCategory("")
+    setTodoToEditCategory("");
     setFade(false);
     setModalEdit(false);
   }
@@ -67,10 +79,11 @@ function ModalEdit({
         <p>Editar tarefa</p>
       </label>
       <textarea
-        id="input_edicao"
+        placeholder={todoSuggestion}
         defaultValue={todoToEditText}
         maxLength={charactersLimit}
         rows={"5"}
+        id="input_edicao"
         ref={modalEditTextarea}
         onChange={(e) => mudarTexto(e)}
       ></textarea>
@@ -87,7 +100,10 @@ function ModalEdit({
       </select>
       <div className="modal_edit__buttons">
         <button onClick={descartarEdicao}>Descartar</button>
-        <button disabled={!todoToEditText.trim() || !todoToEditCategory} onClick={reescreverEdicao}>
+        <button
+          disabled={!todoToEditText.trim() || !todoToEditCategory}
+          onClick={reescreverEdicao}
+        >
           Reescrever
         </button>
       </div>

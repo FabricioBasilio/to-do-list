@@ -9,6 +9,19 @@ function ModalCategory({
   setCategories,
   modalCategoryInput,
 }) {
+  const categorySuggestions = [
+    "Entretenimento",
+    "Arte",
+    "Culinária",
+    "Estudos",
+    "Trabalho",
+    "Esporte",
+    "Pessoal",
+  ];
+
+  const categorySuggestion =
+    categorySuggestions[Math.floor(Math.random() * categorySuggestions.length)];
+
   const charactersLimit = 20;
 
   const [newCategoryName, setNewCategoryName] = useState("");
@@ -68,7 +81,7 @@ function ModalCategory({
   }
 
   function isEmpty() {
-    return !newCategoryName.trim()
+    return !newCategoryName.trim();
   }
 
   return (
@@ -76,10 +89,15 @@ function ModalCategory({
       <form onSubmit={handleFormSubmit}>
         <label htmlFor="nova_categoria_texto">Adicionar categoria</label>
         <input
-          id="nova_categoria_texto"
-          className={(isEmpty() || hasCategory()) ? "modal_category__category_name--feedback" : ""}
+          placeholder={categorySuggestion}
           type="text"
           maxLength={charactersLimit}
+          id="nova_categoria_texto"
+          className={
+            isEmpty() || hasCategory()
+              ? "modal_category__category_name--feedback"
+              : ""
+          }
           ref={modalCategoryInput}
           onChange={(e) => mudarTexto(e)}
         />
@@ -87,7 +105,7 @@ function ModalCategory({
           valueLength={newCategoryName.length}
           limit={charactersLimit}
         />
-        <FeedbackModalCategory isEmpty={isEmpty} hasCategory={hasCategory}/>
+        <FeedbackModalCategory isEmpty={isEmpty} hasCategory={hasCategory} />
         <div className="modal_category__buttons">
           <button type="button" onClick={descartarCategoria}>
             Descartar
